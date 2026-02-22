@@ -1,0 +1,6 @@
+ipython
+notebook
+sphinx
+sphinx-gallery
+sphinx-copybutton
+sphinx_design
