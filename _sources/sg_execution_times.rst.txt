@@ -1,0 +1,76 @@
+
+:orphan:
+
+.. _sphx_glr_sg_execution_times:
+
+
+Computation times
+=================
+**00:30.935** total execution time for 14 files **from all galleries**:
+
+.. container::
+
+  .. raw:: html
+
+    <style scoped>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
+    } );
+    </script>
+
+  .. list-table::
+   :header-rows: 1
+   :class: table table-striped sg-datatable
+
+   * - Example
+     - Time
+     - Mem (MB)
+   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_02_tropomiak.py` (``../examples/satellite/run_satellite_02_tropomiak.py``)
+     - 00:30.935
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``../examples/gridemiss/run_gridemiss_01_perturb.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_02_perturbbox.py` (``../examples/gridemiss/run_gridemiss_02_perturbbox.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_interlude_ex_camxrerun.py` (``../examples/interlude/ex_camxrerun.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_maps_ex_maps_01_compare.py` (``../examples/maps/ex_maps_01_compare.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_mpe_run_mpe_01_no2.py` (``../examples/mpe/run_mpe_01_no2.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_mpe_run_mpe_02_o3mda8.py` (``../examples/mpe/run_mpe_02_o3mda8.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_prep_ex_prep_01_examples.py` (``../examples/prep/ex_prep_01_examples.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_prep_ex_prep_02_setup.py` (``../examples/prep/ex_prep_02_setup.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_prep_ex_prep_03_mamba.py` (``../examples/prep/ex_prep_03_mamba.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_prep_ex_prep_04_downloadcamx.py` (``../examples/prep/ex_prep_04_downloadcamx.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_ptsrce_run_ptsrce_01_singlesource.py` (``../examples/ptsrce/run_ptsrce_01_singlesource.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_ptsrce_run_ptsrce_02_editlonlatbox.py` (``../examples/ptsrce/run_ptsrce_02_editlonlatbox.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_01_simpleomi.py` (``../examples/satellite/run_satellite_01_simpleomi.py``)
+     - 00:00.000
+     - 0.0

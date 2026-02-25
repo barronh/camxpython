@@ -1,0 +1,64 @@
+
+
+.. _sphx_glr_auto_examples_satellite:
+
+Satellite Comparison
+--------------------
+
+* TropOMI NO2
+* OMI NO2
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example compares CAMx to the Ozone Monitoring Instrument (OMI) for NO2 tropospheric vertical column densitities (tropNO2). OMI&#x27;s tropNO2 is derived from a measurement along the path light from the sun and reflected off the surface of the earth. The original measurement is called a slant column density (SCD). The SCD is split into tropospheric and stratospheric parts, based on a model profile (a priori). The a priori and slant path are combined with a sensitivity vector (scattering weight) to convert the tropospheric SCD to tropNO2 [molecules/cm2]. CAMx can output mixing ratios at all levels, which can be converted to molecules/cm2 and summed to make a tropNO2 product. Note, however, that the CAMx tropNO2 inherently assumes a different model profile. A more complete comparison would adjust OMI to use CAMx&#x27;s profile, or adjust CAMx to use OMI&#x27;s profile. Each has strengths and weaknesses.">
+
+.. only:: html
+
+  .. image:: /auto_examples/satellite/images/thumb/sphx_glr_run_satellite_01_simpleomi_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/satellite/run_satellite_01_simpleomi`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Simple OMI</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example pairs CAMx 3D data with TropOMI NO2 columns using the CMAQ Satellite Processors (cmaqsatproc). This includes (1) downloading TropOMI data from NASA&#x27;s Distribution and Active Archive Centers (DAAC), (2) regridding TropOMI to the CAMx grid, (3) subseting CAMx to just overpass times, (4) filtering CAMx to valid retrieval pixels/layers, and (5) applying the CAMx a priori shape to the TropOMI retrieval.">
+
+.. only:: html
+
+  .. image:: /auto_examples/satellite/images/thumb/sphx_glr_run_satellite_02_tropomiak_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/satellite/run_satellite_02_tropomiak`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Pair CAMx with TropOMI NO2</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/satellite/run_satellite_01_simpleomi
+   /auto_examples/satellite/run_satellite_02_tropomiak
+

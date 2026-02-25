@@ -1,0 +1,70 @@
+"""
+Compare Two CAMx Runs
+=====================
+
+"""
+
+# %%
+# Configuration
+# '''''''''''''
+
+# date to process
+date = '20160610'
+# file to use as input
+oldpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D.avrg.grd02.nc'
+# file to create
+newpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D_EDIT.avrg.grd02.nc'
+# figure demonstrating the change
+figpath = 'outputs/ozone_compare.png'
+
+# %%
+# Imports and File Prep
+# '''''''''''''''''''''
+
+import pyrsig
+import pycno
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import matplotlib.colors as mc
+
+os.makedirs('outputs', exist_ok=True)
+
+# %%
+# Open Files
+# ''''''''''
+# - Open the existing file in read-only mode
+# - Open the new file in read-only append mode
+
+oldfile = pyrsig.open_ioapi(oldpath)
+newfile = pyrsig.open_ioapi(newpath)
+
+
+# %%
+# Plot Comparison
+# '''''''''''''''
+
+
+oldfile = pyrsig.open_ioapi(oldpath)
+newfile = pyrsig.open_ioapi(newpath)
+
+key = 'O3'
+compfile = newfile[[]]
+compfile['New'] = newfile[key].isel(LAY=0).max('TSTEP') * 1000
+compfile['Old'] = oldfile[key].isel(LAY=0).max('TSTEP') * 1000
+Z = compfile.to_dataarray(dim='version')
+Z.attrs.update(oldfile[key].attrs, units='ppb')
+fca = Z.plot(col='version', norm=mc.Normalize(0))
+
+dZ = np.abs(compfile['New'] - compfile['Old'])
+levels = [1, 5, 10]
+for ax in fca.axs.ravel():
+    cs = dZ.plot.contour(levels=levels, colors=['grey', 'w', 'r'], ax=ax, add_labels=False)
+
+cl, clbl = cs.legend_elements()
+clbl = [f'+{v:.0f}ppb' for v in levels]
+ax.legend(cl, clbl)
+
+
+pycno.cno(oldfile.crs_proj4).drawstates(ax=fca.axs)
+fca.fig.savefig(figpath)
