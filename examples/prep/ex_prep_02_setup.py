@@ -23,15 +23,15 @@ Below is a bash command that makes a requirements.txt
 
     cat << EOF > requirements.txt
     netCDF4>=1.5.8,!=1.7.0,!=1.7.1
-    pseudonetcdf
+    pseudonetcdf>=3.5
     numpy>=1.19.5,<2
     scipy>=1.5.4
     pandas>=1.1.5
     xarray>=0.16.2
     pyproj>=2.6.1
     pycno
-    pyrsig>=xxx
-    cmaqsatproc>=xxx
+    pyrsig>=0.12.0
+    cmaqsatproc>=0.5.2
     EOF
 
 Install a new virtual environment
@@ -44,7 +44,7 @@ Install a new virtual environment
 
 .. code-block:: bash
 
-    python -m venv py312
+    python3 -m venv py312
     source py312/bin/activate
     python -m pip install -r requirements.txt
     deactivate

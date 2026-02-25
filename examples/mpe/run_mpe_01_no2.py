@@ -66,7 +66,7 @@ df.to_csv(pairedpath)
 keys = [obskey, modkey]
 statsdf = pyrsig.utils.quickstats(df[keys], obskey)
 # Print them for the user to review.
-print(statsdf.to_markdown())
+print(statsdf)
 # Save stats to disk
 statsdf.to_csv(statspath)
 

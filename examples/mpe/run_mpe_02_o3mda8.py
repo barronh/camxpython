@@ -71,7 +71,7 @@ df = pd.concat(dfs)
 statsdf = pyrsig.utils.quickstats(df[keys], obskey)
 # Save stats to disk
 statsdf.to_csv(statspath)
-print(statsdf.to_markdown())
+print(statsdf)
 
 
 # %%
@@ -104,8 +104,9 @@ df['time_lst'] = df['time'].dt.tz_convert(None) + tz.loc[df.STATION].values
 
 a8df = df[['STATION', 'time_lst', obskey, modkey]].groupby('STATION').apply(
     lambda sdf:
-    sdf.set_index('time_lst').asfreq('1h')
-    .rolling('8h', min_periods=6).mean()
+    sdf.set_index('time_lst')[[obskey, modkey]].asfreq('1h')
+    .rolling('8h', min_periods=6).mean(),
+    include_groups=True
 )
 
 # %%
@@ -125,7 +126,7 @@ a8df.index = pd.MultiIndex.from_frame(iddf[['STATION', 'start_time_lst']])
 n = a8df.shape[0]
 a8df.query('start_time_lst.dt.hour > 6', inplace=True)
 nnew = a8df.shape[0]
-print(f'INFO:: removed {n - nnew} ({1 - nnew / n:.2%}) 8h avg (7 morning horus)')
+print(f'INFO:: removed {n - nnew} ({1 - nnew / n:.2%}) 8h avg (7 morning hours)')
 
 
 # %%
@@ -154,7 +155,7 @@ statsdf = pyrsig.utils.quickstats(mda8df[keys], obskey)
 # Save stats to disk
 statsdf.to_csv(statspath)
 # Print them for the user to review.
-print(statsdf.to_markdown())
+print(statsdf)
 
 # %%
 # Visualize Results

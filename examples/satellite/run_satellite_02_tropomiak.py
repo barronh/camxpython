@@ -57,7 +57,7 @@ satreader = csp.reader_dict[satname]
 
 # Download input files
 dests = satreader.cmr_download(
-    temporal=f'{date}T00:00:00Z/{date}T23:59:59Z',
+    temporal=f'{date}T17:00:00Z/{date}T17:59:59Z',
     bbox=cg.csp.bbox(), verbose=1
 )
 

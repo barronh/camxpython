@@ -6,7 +6,7 @@ Sometimes machines are locked down. In that case, use your own package
 manager. On these machines, we can easily use micromamba.
 
 This is not a tutorial on micromamba, and I am going to use a fast
-and dirty approach to get just wwhat we need.
+and dirty approach to get just what we need.
 
 
 .. code-block:: bash
@@ -17,5 +17,7 @@ and dirty approach to get just wwhat we need.
     popd
     micromamba/bin/micromamba install python==3.12
     .local/share/mamba/bin/python -m venv ~/py312
+
+Many of you will not need to do this.
 
 """

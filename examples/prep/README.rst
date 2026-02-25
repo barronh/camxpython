@@ -42,4 +42,6 @@ For example, `run_gridemiss_01_perturb.py` would be run from within
     python3 run_gridemiss_01_perturb.py
 
 
-The python3 executable will be setup as described in the Preparing Python Environment.
+* Getting the examples folder done in `Get Examples Folder`
+* The python3 executable will be setup as described in the `Preparing Python Environment` (or in the `Using Mamba to get Python`).
+* The `camx/*/*.nc` will be made in the `Getting CAMx Files` example.

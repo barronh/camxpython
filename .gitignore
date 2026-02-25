@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+docs/_build
+docs/auto_examples
+docs/sg_execution_times.rst
+outputs/
+examples/satellite/data.gesdisc.earthdata.nasa.gov/
+py311
