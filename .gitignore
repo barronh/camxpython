@@ -1,5 +1,7 @@
 .ipynb_checkpoints/
-docs/_build
+docs/_build/singlehtml
+docs/_build/doctrees
+docs/_build/latex
 docs/auto_examples
 docs/sg_execution_times.rst
 outputs/

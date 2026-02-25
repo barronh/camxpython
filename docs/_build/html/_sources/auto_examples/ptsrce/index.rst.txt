@@ -1,0 +1,65 @@
+
+
+.. _sphx_glr_auto_examples_ptsrce:
+
+Point Source Emission Examples
+------------------------------
+
+* Make a single representative source file.
+* Perturb a facilities based on latitude/longitude.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example averages all other sources to create a single hypothetical source. It also reports all variables that are in the file, which makes direct modification easy.">
+
+.. only:: html
+
+  .. image:: /auto_examples/ptsrce/images/thumb/sphx_glr_run_ptsrce_01_singlesource_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/ptsrce/run_ptsrce_01_singlesource`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Create a Hypothetical Source</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Point sources may be facilities or individual stacks. This example demonstrates how to apply a scaling factor to all sources in some region. The region can be as simple as a rectangular box, a circle, or any geographic shape you can define.">
+
+.. only:: html
+
+  .. image:: /auto_examples/ptsrce/images/thumb/sphx_glr_run_ptsrce_02_editlonlatbox_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/ptsrce/run_ptsrce_02_editlonlatbox`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Modify a Selected Source</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/ptsrce/run_ptsrce_01_singlesource
+   /auto_examples/ptsrce/run_ptsrce_02_editlonlatbox
+

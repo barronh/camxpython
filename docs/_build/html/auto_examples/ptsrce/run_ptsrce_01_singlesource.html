@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Create a Hypothetical Source &#8212; SESARM Training Unversioned documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../../_static/documentation_options.js?v=f23e73c1"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Modify a Selected Source" href="run_ptsrce_02_editlonlatbox.html" />
+    <link rel="prev" title="Point Source Emission Examples" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-ptsrce-run-ptsrce-01-singlesource-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="create-a-hypothetical-source">
+<span id="sphx-glr-auto-examples-ptsrce-run-ptsrce-01-singlesource-py"></span><h1>Create a Hypothetical Source<a class="headerlink" href="#create-a-hypothetical-source" title="Link to this heading">¶</a></h1>
+<p>This example averages all other sources to create a single hypothetical source.
+It also reports all variables that are in the file, which makes direct modification easy.</p>
+<p>The basic steps are:</p>
+<ol class="arabic simple">
+<li><p>Read in an existing point source file.</p></li>
+<li><p>Average all points (points are COL dimension).</p></li>
+<li><p>Save out result.</p></li>
+<li><p>Visualize result.</p></li>
+</ol>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># what date are you processing?</span>
+<span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;20160610&#39;</span>
+<span class="c1"># existing point source file to copy</span>
+<span class="n">oldpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../camx/ptsrce/point.camx.ptnonipm.</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="c1"># new point source file for 1 &quot;average&quot; source</span>
+<span class="n">newpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;outputs/point.camx.just1.</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="c1"># plot that demonstrates new file</span>
+<span class="n">figpath</span> <span class="o">=</span> <span class="s1">&#39;outputs/example_ptsrce_newsinglesource.png&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">¶</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">PseudoNetCDF</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pnc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+</section>
+<section id="pepare-folders">
+<h2>Pepare Folders<a class="headerlink" href="#pepare-folders" title="Link to this heading">¶</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;outputs&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">newpath</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">newpath</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-single-source-file">
+<h2>Create a Single Source File<a class="headerlink" href="#create-a-single-source-file" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Old file has N point sources.</p></li>
+<li><p>Oddly, each point source is an element of the COL dimension.</p></li>
+<li><p>Average the COL dimension to make an “average” point source.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">oldfile</span> <span class="o">=</span> <span class="n">pnc</span><span class="o">.</span><span class="n">pncopen</span><span class="p">(</span><span class="n">oldpath</span><span class="p">)</span>
+<span class="n">newfile</span> <span class="o">=</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">COL</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">saved</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF4_CLASSIC&#39;</span><span class="p">,</span> <span class="n">outmode</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
+<span class="n">saved</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Adding dimensions
+Adding globals
+Adding variables
+Defining xcoord
+Defining ycoord
+Defining stkheight
+Defining stkdiam
+Defining stktemp
+Defining stkspeed
+Defining pigflag
+Defining saoverride
+Defining TFLAG
+Defining ETFLAG
+Defining flowrate
+Defining plumerise
+Defining plume_bottom
+Defining plume_top
+Defining NO
+Defining NO2
+Defining OLE
+Defining PAR
+Defining TOL
+Defining XYL
+Defining FORM
+Defining ALD2
+Defining ETH
+Defining CO
+Defining HONO
+Defining ISOP
+Defining MEOH
+Defining ETOH
+Defining SO2
+Defining SULF
+Defining ALDX
+Defining ETHA
+Defining IOLE
+Defining TERP
+Defining NH3
+Defining HCL
+Defining CL2
+Defining CH4
+Defining TOLA
+Defining ISP
+Defining TRP
+Defining PSO4
+Defining PNO3
+Defining POA
+Defining PEC
+Defining PFE
+Defining PMN
+Defining PK
+Defining PCA
+Defining PMG
+Defining PAL
+Defining PSI
+Defining PTI
+Defining FPRM
+Defining CPRM
+Defining PRPA
+Defining BENZ
+Defining ETHY
+Defining ACET
+Defining KET
+Defining ECH4
+Defining UNR
+Defining NVOL
+Defining PNH4
+Defining PCL
+Defining PH2O
+Defining NA
+Defining BNZA
+Defining IVOA
+Populating xcoord
+Populating ycoord
+Populating stkheight
+Populating stkdiam
+Populating stktemp
+Populating stkspeed
+Populating pigflag
+Populating saoverride
+Populating TFLAG
+Populating ETFLAG
+Populating flowrate
+Populating plumerise
+Populating plume_bottom
+Populating plume_top
+Populating NO
+Populating NO2
+Populating OLE
+Populating PAR
+Populating TOL
+Populating XYL
+Populating FORM
+Populating ALD2
+Populating ETH
+Populating CO
+Populating HONO
+Populating ISOP
+Populating MEOH
+Populating ETOH
+Populating SO2
+Populating SULF
+Populating ALDX
+Populating ETHA
+Populating IOLE
+Populating TERP
+Populating NH3
+Populating HCL
+Populating CL2
+Populating CH4
+Populating TOLA
+Populating ISP
+Populating TRP
+Populating PSO4
+Populating PNO3
+Populating POA
+Populating PEC
+Populating PFE
+Populating PMN
+Populating PK
+Populating PCA
+Populating PMG
+Populating PAL
+Populating PSI
+Populating PTI
+Populating FPRM
+Populating CPRM
+Populating PRPA
+Populating BENZ
+Populating ETHY
+Populating ACET
+Populating KET
+Populating ECH4
+Populating UNR
+Populating NVOL
+Populating PNH4
+Populating PCL
+Populating PH2O
+Populating NA
+Populating BNZA
+Populating IVOA
+</pre></div>
+</div>
+</section>
+<section id="visualize-source-to-confirm-operational">
+<h2>Visualize Source to confirm operational<a class="headerlink" href="#visualize-source-to-confirm-operational" title="Link to this heading">¶</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">PseudoNetCDF</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pnc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pycno</span>
+
+<span class="c1"># open file and get coordinate information</span>
+<span class="n">newfile</span> <span class="o">=</span> <span class="n">pnc</span><span class="o">.</span><span class="n">pncopen</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;netcdf&#39;</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">getproj</span><span class="p">(</span><span class="n">projformat</span><span class="o">=</span><span class="s1">&#39;proj4&#39;</span><span class="p">,</span> <span class="n">withgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fromorigin</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">getTimes</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;xcoord&#39;</span><span class="p">][:]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ycoord&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Create a plot with a primary axis for FPRM, a secondary axis for NOx,</span>
+<span class="c1"># and an inset axis for spatial location.</span>
+<span class="n">gskw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">.9</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">gridspec_kw</span><span class="o">=</span><span class="n">gskw</span><span class="p">)</span>
+<span class="n">sax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">mapax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">.15</span><span class="p">,</span> <span class="mf">.65</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.2</span><span class="p">])</span>
+
+<span class="c1"># Add outlines of countries to the map.</span>
+<span class="n">cno</span> <span class="o">=</span> <span class="n">pycno</span><span class="o">.</span><span class="n">cno</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5e6</span><span class="p">,</span> <span class="mf">2.5e6</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">2e6</span><span class="p">,</span> <span class="mf">2e6</span><span class="p">))</span>
+<span class="n">cno</span><span class="o">.</span><span class="n">drawcountries</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">mapax</span><span class="p">)</span>
+<span class="c1"># add a point for the source</span>
+<span class="n">mapax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">mapax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
+
+<span class="c1"># Add a time-series plot of FPRM to the primary axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;FPRM&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;FPRM&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;FPRM [g/h]&#39;</span><span class="p">)</span>
+<span class="c1"># Add a time-series plot of NOx to the secondary axis</span>
+<span class="n">noxf</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;NOx = NO[:] + NO2[:]&#39;</span><span class="p">)</span>
+<span class="n">sax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">noxf</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;NOx&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NOx&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">sax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;NOx [mol/h]&#39;</span><span class="p">)</span>
+
+<span class="c1"># Orient the date tick labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="c1"># Add a legend for both axes</span>
+<span class="n">ll</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">lines</span> <span class="o">+</span> <span class="n">sax</span><span class="o">.</span><span class="n">lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span> <span class="p">[</span><span class="n">_l</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span> <span class="k">for</span> <span class="n">_l</span> <span class="ow">in</span> <span class="n">ll</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="c1"># Save the figure to disk</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">figpath</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_run_ptsrce_01_singlesource_001.png" srcset="../../_images/sphx_glr_run_ptsrce_01_singlesource_001.png" alt="run ptsrce 01 singlesource" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>**PNC:/work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/PseudoNetCDF/pncwarn.py:24:UserWarning:
+  Currently not using:false_northing 1872000.0
+**PNC:/work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/PseudoNetCDF/pncwarn.py:24:UserWarning:
+  Currently not using:false_easting 2556000.0
+</pre></div>
+</div>
+</section>
+<section id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Modify the script to set the xcoord and yxoord to a new location before saving out [LCC meters].</p></li>
+<li><p>What other properties might you want to change?</p></li>
+</ol>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 10.493 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-ptsrce-run-ptsrce-01-singlesource-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/5f9ee0bc75c4ad8cbb328737c28c41e2/run_ptsrce_01_singlesource.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_ptsrce_01_singlesource.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/e23cce1acc183dd3b696b28296fba52f/run_ptsrce_01_singlesource.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">run_ptsrce_01_singlesource.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/071e84b04c9de5a9104c07ea99b25fb2/run_ptsrce_01_singlesource.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">run_ptsrce_01_singlesource.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">SESARM Training</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">SESARM Training Speaker Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#get-system-ready">Get System Ready</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gridded-emission-examples">Gridded Emission Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#point-source-emission-examples">Point Source Emission Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#rerun-camx">Rerun CAMx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#model-performance-evaluation">Model Performance Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#satellite-comparison">Satellite Comparison</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#making-camx-maps">Making CAMx Maps</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Examples</a><ul>
+  <li><a href="index.html">Point Source Emission Examples</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Point Source Emission Examples</a></li>
+      <li>Next: <a href="run_ptsrce_02_editlonlatbox.html" title="next chapter">Modify a Selected Source</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/auto_examples/ptsrce/run_ptsrce_01_singlesource.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
