@@ -5,6 +5,8 @@
     last updated: 2026-02-06
 ---
 
+[Click Here for an Interactive Tutorial](https://barronh.github.io/camxpython/)
+
 This document provides notes on three exercises to be performed with CAMx at the SESARM CAMx Training. These examples were determined based on discussions with the meeting organizers to be most responsive to the community's needs.
 
 Objectives:
