@@ -15,7 +15,7 @@ Steps:
 This can be done directly right clicking on the zip link and choosing copy link.
 Then pasting that link as shown below
 
-..code::
+.. code::
 
     # The url below must be updated by righ clicking on the downloadurl may change
     # you must edit the line below or it will not work
@@ -25,9 +25,9 @@ Then pasting that link as shown below
     unzip -d ~/examples auto_examples_python.zip
 
 
-When you're done, run `tree -L 2 ~/examples`. You should get something like
+When you're done, run `tree -L 2 ~/examples`. You should get something like:
 
-..code::
+.. code::
 
     examples/
     |-- gridemiss

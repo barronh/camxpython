@@ -37,6 +37,7 @@ odate = '2017-06-10'  # oddly Jun 10-11 of 2016 have no OMI over the US
 
 # Use dates to find avrg file and 3d met file
 cpath = f'../../camx/outputs/CAMx.v7.32.36.12.{cdate}.3D.avrg.grd01.nc'
+# If you used camx.tar.gz for inputs, update the met folder to metss
 mpath = f'../../camx/met/camx.3d.36km.{cdate}.nc'
 
 # Define output paths.

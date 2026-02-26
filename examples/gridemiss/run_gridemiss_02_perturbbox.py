@@ -49,8 +49,8 @@ import netCDF4
 import pyproj
 from shapely import points, box
 
-shutil.copyfile(oldpath, newpath)
 os.makedirs('outputs', exist_ok=True)
+shutil.copyfile(oldpath, newpath)
 
 # %%
 # Open Files
