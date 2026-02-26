@@ -49,7 +49,7 @@ future. In that case, you need to run the testcase.
 
     cd ~
     wget --continue https://gaftp.epa.gov/Air/aqmg/bhenders/share/SESARM/camx.tar.gz
-    gunzip camx.tar.gz
+    tar xzf camx.tar.gz
 
 When you are done, run `tree -L 2 ~/camx` and you should get something like this:
 

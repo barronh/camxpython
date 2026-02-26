@@ -36,12 +36,17 @@ The basic steps are:
 
 *Reminder*: You must have already activated your python environment.
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-24
+.. GENERATED FROM PYTHON SOURCE LINES 22-29
 
 Configuration
 '''''''''''''
+Find a source in the in "Online 2020 NEI Data Retrieval Tool"
+https://www.epa.gov/air-emissions-inventories/2020-national-emissions-inventory-nei-data
+- As an example, I chose single stack with the largest NO rate; then updated
+  the lon/lat to the nearest source in the NEI 2020 inventory
+- You'll have a chance to adjust your shape until you capture the intended source.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-44
+.. GENERATED FROM PYTHON SOURCE LINES 29-50
 
 .. code-block:: Python
 
@@ -57,9 +62,10 @@ Configuration
 
     # Region to modify
     shape = 'box'  # box, circle, or custom
-    center = (-82.541095, 36.522199)
-    dx = 50  # m (used as radius for circle)
-    dy = 50  # m (ignored for circle)
+    center = (-82.5436, 36.5224)  
+    dx = 250  # m (used as radius for circle)
+    dy = 250  # m (ignored for circle)
+
 
     # factor to apply within the shape
     scalekeys = ['NO', 'NO2', 'HONO']  # a list of species or 'all'
@@ -72,16 +78,17 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-47
+.. GENERATED FROM PYTHON SOURCE LINES 51-53
 
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-55
+.. GENERATED FROM PYTHON SOURCE LINES 53-62
 
 .. code-block:: Python
 
 
+    import numpy as np
     import netCDF4
     import pyproj
     import shutil
@@ -96,14 +103,14 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-60
+.. GENERATED FROM PYTHON SOURCE LINES 63-67
 
 Define Output and Remove if it exists
 '''''''''''''''''''''''''''''''''''''
 - Use an existing file as a template
 - Create a copy for direct modification
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-68
+.. GENERATED FROM PYTHON SOURCE LINES 67-75
 
 .. code-block:: Python
 
@@ -128,14 +135,14 @@ Define Output and Remove if it exists
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-73
+.. GENERATED FROM PYTHON SOURCE LINES 76-80
 
 Open Files
 ''''''''''
 - Open the existing file in read-only mode
 - Open the new file in append mode
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-77
+.. GENERATED FROM PYTHON SOURCE LINES 80-84
 
 .. code-block:: Python
 
@@ -150,13 +157,13 @@ Open Files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-81
+.. GENERATED FROM PYTHON SOURCE LINES 85-88
 
 Select Emission Variables to Scale
 ''''''''''''''''''''''''''''''''''
 If scalekeys is all, select all emission variables by units
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-92
+.. GENERATED FROM PYTHON SOURCE LINES 88-99
 
 .. code-block:: Python
 
@@ -185,7 +192,7 @@ If scalekeys is all, select all emission variables by units
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 93-100
+.. GENERATED FROM PYTHON SOURCE LINES 100-107
 
 Define relevant sources
 ''''''''''''''''''''''''
@@ -195,7 +202,7 @@ Define relevant sources
     - in a circle, or
     - within a complex custom shape
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-132
+.. GENERATED FROM PYTHON SOURCE LINES 107-140
 
 .. code-block:: Python
 
@@ -229,7 +236,8 @@ Define relevant sources
 
     psxy = points(oldf['xcoord'][:], oldf['ycoord'])  # make points for each source
     ismine = myshp.intersects(psxy)                   # find all points in shape
-    print(f'INFO:: selected {ismine.sum()} point sources')
+    print(f'INFO:: {ismine.sum()} point sources in myshp')
+
 
 
 
@@ -239,17 +247,62 @@ Define relevant sources
 
  .. code-block:: none
 
-    INFO:: selected 60 point sources
+    INFO:: 60 point sources in myshp
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-135
+.. GENERATED FROM PYTHON SOURCE LINES 141-148
+
+Point Source Distances
+''''''''''''''''''''''
+- Group stacks by unique distance from myshp perimeter.
+- Report all clusters within maxdist.
+   - Check that the number inside (0m) matches your expectation.
+   - Check for nearby clusters that might be the same facilty.
+   - Consider adjusting dx, dy or shape type to better capture the source.
+
+.. GENERATED FROM PYTHON SOURCE LINES 148-158
+
+.. code-block:: Python
+
+
+    maxdist = 10e3  # stop looking at 10km
+    psdist = points(cx, cy).distance(psxy)
+    fdists, fcnts = np.unique(psdist, return_counts=True)
+    print('INFO:: Stacks by distance from myshp center')
+    for fdist, fcnt in zip(fdists, fcnts):
+        print(f'INFO:: {fdist:6.0f}m: {fcnt}')
+        if fdist > maxdist:
+            break
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    INFO:: Stacks by distance from myshp center
+    INFO::    223m: 4
+    INFO::    224m: 56
+    INFO::   1016m: 2
+    INFO::   1321m: 6
+    INFO::   3564m: 1
+    INFO::   3624m: 14
+    INFO::   9100m: 14
+    INFO::  19298m: 24
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 159-161
 
 Apply Scaling
--------------
+'''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 135-145
+.. GENERATED FROM PYTHON SOURCE LINES 161-171
 
 .. code-block:: Python
 
@@ -278,14 +331,14 @@ Apply Scaling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 146-150
+.. GENERATED FROM PYTHON SOURCE LINES 172-176
 
 Visualize Source to confirm operational
 '''''''''''''''''''''''''''''''''''''''
 - Create gridded data for quick visualiation
 - Show new, original and difference.
 
-.. GENERATED FROM PYTHON SOURCE LINES 150-188
+.. GENERATED FROM PYTHON SOURCE LINES 176-214
 
 .. code-block:: Python
 
@@ -339,7 +392,7 @@ Visualize Source to confirm operational
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-193
+.. GENERATED FROM PYTHON SOURCE LINES 215-219
 
 Extra Credit
 ''''''''''''
@@ -349,7 +402,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.861 seconds)
+   **Total running time of the script:** (0 minutes 4.185 seconds)
 
 
 .. _sphx_glr_download_auto_examples_ptsrce_run_ptsrce_02_editlonlatbox.py:

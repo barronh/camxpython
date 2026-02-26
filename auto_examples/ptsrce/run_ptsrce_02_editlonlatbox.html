@@ -62,6 +62,15 @@ define.</p>
 <p><em>Reminder</em>: You must have already activated your python environment.</p>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>Find a source in the in “Online 2020 NEI Data Retrieval Tool”
+<a class="reference external" href="https://www.epa.gov/air-emissions-inventories/2020-national-emissions-inventory-nei-data">https://www.epa.gov/air-emissions-inventories/2020-national-emissions-inventory-nei-data</a>
+- As an example, I chose single stack with the largest NO rate; then updated</p>
+<blockquote>
+<div><p>the lon/lat to the nearest source in the NEI 2020 inventory</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>You’ll have a chance to adjust your shape until you capture the intended source.</p></li>
+</ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># date to process</span>
 <span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;20160610&#39;</span>
 <span class="c1"># file to copy</span>
@@ -73,9 +82,10 @@ define.</p>
 
 <span class="c1"># Region to modify</span>
 <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;box&#39;</span>  <span class="c1"># box, circle, or custom</span>
-<span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">82.541095</span><span class="p">,</span> <span class="mf">36.522199</span><span class="p">)</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># m (used as radius for circle)</span>
-<span class="n">dy</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># m (ignored for circle)</span>
+<span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">82.5436</span><span class="p">,</span> <span class="mf">36.5224</span><span class="p">)</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">250</span>  <span class="c1"># m (used as radius for circle)</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mi">250</span>  <span class="c1"># m (ignored for circle)</span>
+
 
 <span class="c1"># factor to apply within the shape</span>
 <span class="n">scalekeys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;HONO&#39;</span><span class="p">]</span>  <span class="c1"># a list of species or &#39;all&#39;</span>
@@ -85,7 +95,8 @@ define.</p>
 </section>
 <section id="imports-and-folders">
 <h2>Imports and Folders<a class="headerlink" href="#imports-and-folders" title="Link to this heading">¶</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pyproj</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">shapely</span><span class="w"> </span><span class="kn">import</span> <span class="n">points</span><span class="p">,</span> <span class="n">box</span>
@@ -183,14 +194,51 @@ INFO:: to scale [&#39;NO&#39;, &#39;NO2&#39;, &#39;HONO&#39;]
 
 <span class="n">psxy</span> <span class="o">=</span> <span class="n">points</span><span class="p">(</span><span class="n">oldf</span><span class="p">[</span><span class="s1">&#39;xcoord&#39;</span><span class="p">][:],</span> <span class="n">oldf</span><span class="p">[</span><span class="s1">&#39;ycoord&#39;</span><span class="p">])</span>  <span class="c1"># make points for each source</span>
 <span class="n">ismine</span> <span class="o">=</span> <span class="n">myshp</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">psxy</span><span class="p">)</span>                   <span class="c1"># find all points in shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INFO:: selected </span><span class="si">{</span><span class="n">ismine</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> point sources&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INFO:: </span><span class="si">{</span><span class="n">ismine</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> point sources in myshp&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO:: selected 60 point sources
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO:: 60 point sources in myshp
 </pre></div>
 </div>
+</section>
+<section id="point-source-distances">
+<h2>Point Source Distances<a class="headerlink" href="#point-source-distances" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Group stacks by unique distance from myshp perimeter.</p></li>
+<li><dl class="simple">
+<dt>Report all clusters within maxdist.</dt><dd><ul>
+<li><p>Check that the number inside (0m) matches your expectation.</p></li>
+<li><p>Check for nearby clusters that might be the same facilty.</p></li>
+<li><p>Consider adjusting dx, dy or shape type to better capture the source.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">maxdist</span> <span class="o">=</span> <span class="mf">10e3</span>  <span class="c1"># stop looking at 10km</span>
+<span class="n">psdist</span> <span class="o">=</span> <span class="n">points</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">psxy</span><span class="p">)</span>
+<span class="n">fdists</span><span class="p">,</span> <span class="n">fcnts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">psdist</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;INFO:: Stacks by distance from myshp center&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fdist</span><span class="p">,</span> <span class="n">fcnt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fdists</span><span class="p">,</span> <span class="n">fcnts</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INFO:: </span><span class="si">{</span><span class="n">fdist</span><span class="si">:</span><span class="s1">6.0f</span><span class="si">}</span><span class="s1">m: </span><span class="si">{</span><span class="n">fcnt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fdist</span> <span class="o">&gt;</span> <span class="n">maxdist</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO:: Stacks by distance from myshp center
+INFO::    223m: 4
+INFO::    224m: 56
+INFO::   1016m: 2
+INFO::   1321m: 6
+INFO::   3564m: 1
+INFO::   3624m: 14
+INFO::   9100m: 14
+INFO::  19298m: 24
+</pre></div>
+</div>
+</section>
 <section id="apply-scaling">
-<h3>Apply Scaling<a class="headerlink" href="#apply-scaling" title="Link to this heading">¶</a></h3>
+<h2>Apply Scaling<a class="headerlink" href="#apply-scaling" title="Link to this heading">¶</a></h2>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">skey</span> <span class="ow">in</span> <span class="n">scalekeys</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INFO:: multiplying </span><span class="si">{</span><span class="n">skey</span><span class="si">}</span><span class="s1"> by </span><span class="si">{</span><span class="n">factor</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1"> at selected point sources&#39;</span><span class="p">)</span>
     <span class="n">newvals</span> <span class="o">=</span> <span class="n">oldf</span><span class="p">[</span><span class="n">skey</span><span class="p">][:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -206,7 +254,6 @@ INFO:: multiplying NO2 by 120.0% at selected point sources
 INFO:: multiplying HONO by 120.0% at selected point sources
 </pre></div>
 </div>
-</section>
 </section>
 <section id="visualize-source-to-confirm-operational">
 <h2>Visualize Source to confirm operational<a class="headerlink" href="#visualize-source-to-confirm-operational" title="Link to this heading">¶</a></h2>
@@ -259,7 +306,7 @@ INFO:: multiplying HONO by 120.0% at selected point sources
 <li><p>Modify the custom section to scale all point sources in your home state.</p></li>
 <li><p>Modify the custom section to scale all point sources in the counties in a nonattainment area.</p></li>
 </ol>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.861 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.185 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-ptsrce-run-ptsrce-02-editlonlatbox-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/a1adaaff934ced41407730f8a10b2d5c/run_ptsrce_02_editlonlatbox.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_ptsrce_02_editlonlatbox.ipynb</span></code></a></p>

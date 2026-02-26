@@ -21,6 +21,11 @@ The basic steps are:
 # %%
 # Configuration
 # '''''''''''''
+# Find a source in the in "Online 2020 NEI Data Retrieval Tool"
+# https://www.epa.gov/air-emissions-inventories/2020-national-emissions-inventory-nei-data
+# - As an example, I chose single stack with the largest NO rate; then updated
+#   the lon/lat to the nearest source in the NEI 2020 inventory
+# - You'll have a chance to adjust your shape until you capture the intended source.
 
 # date to process
 date = '20160610'
@@ -33,9 +38,10 @@ figpath = 'outputs/example_ptsrce_scaleregion.png'
 
 # Region to modify
 shape = 'box'  # box, circle, or custom
-center = (-82.541095, 36.522199)
-dx = 50  # m (used as radius for circle)
-dy = 50  # m (ignored for circle)
+center = (-82.5436, 36.5224)  
+dx = 250  # m (used as radius for circle)
+dy = 250  # m (ignored for circle)
+
 
 # factor to apply within the shape
 scalekeys = ['NO', 'NO2', 'HONO']  # a list of species or 'all'
@@ -45,6 +51,7 @@ factor = 1.2
 # Imports and Folders
 # '''''''''''''''''''
 
+import numpy as np
 import netCDF4
 import pyproj
 import shutil
@@ -127,11 +134,30 @@ else:
 
 psxy = points(oldf['xcoord'][:], oldf['ycoord'])  # make points for each source
 ismine = myshp.intersects(psxy)                   # find all points in shape
-print(f'INFO:: selected {ismine.sum()} point sources')
+print(f'INFO:: {ismine.sum()} point sources in myshp')
+
+
+# %%
+# Point Source Distances
+# ''''''''''''''''''''''
+# - Group stacks by unique distance from myshp perimeter.
+# - Report all clusters within maxdist.
+#    - Check that the number inside (0m) matches your expectation.
+#    - Check for nearby clusters that might be the same facilty.
+#    - Consider adjusting dx, dy or shape type to better capture the source.
+
+maxdist = 10e3  # stop looking at 10km
+psdist = points(cx, cy).distance(psxy)
+fdists, fcnts = np.unique(psdist, return_counts=True)
+print('INFO:: Stacks by distance from myshp center')
+for fdist, fcnt in zip(fdists, fcnts):
+    print(f'INFO:: {fdist:6.0f}m: {fcnt}')
+    if fdist > maxdist:
+        break
 
 # %%
 # Apply Scaling
-# -------------
+# '''''''''''''
 
 for skey in scalekeys:
     print(f'INFO:: multiplying {skey} by {factor:.1%} at selected point sources')
