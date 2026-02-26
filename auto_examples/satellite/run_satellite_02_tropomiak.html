@@ -79,6 +79,7 @@ a priori shape to the TropOMI retrieval.</p>
 <span class="c1"># Define input paths</span>
 <span class="n">sdate</span> <span class="o">=</span> <span class="s1">&#39;2016&#39;</span> <span class="o">+</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)[</span><span class="mi">4</span><span class="p">:]</span>  <span class="c1"># pair 2019 satellite with 2016 model...</span>
 <span class="n">cpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../camx/outputs/CAMx.v7.32.36.12.</span><span class="si">{</span><span class="n">sdate</span><span class="si">}</span><span class="s1">.3D.avrg.grd01.nc&#39;</span>
+<span class="c1"># If you used camx.tar.gz for inputs, update the met folder to metss</span>
 <span class="n">mpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../camx/met/camx.3d.36km.</span><span class="si">{</span><span class="n">sdate</span><span class="si">}</span><span class="s1">.nc&#39;</span>
 
 <span class="c1"># Define outputpaths</span>
@@ -118,7 +119,7 @@ dimsets {(&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;): [&#39;air
 Making geometry
 Geometry has 136075 rows (2.2s)
 Making overlay
-Overlay has 151928 rows (2.1s)
+Overlay has 151928 rows (1.9s)
 Adding weights
 Working on (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;)
  - Making dataframe
@@ -133,7 +134,7 @@ Working on (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;, &#39;lay
    - Dataframe has 4626550 rows
  - Adding intx geometry
    - Unstacking [&#39;layer&#39;]
-   - Weighted inputs has 151928 rows (1.2s)
+   - Weighted inputs has 151928 rows (1.3s)
  - Weighting
 /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:461: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What&#39;s New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
   ngdf = ngdf.stack(notgeodims)
@@ -144,7 +145,7 @@ defaults [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;
 griddims [&#39;ROW&#39;, &#39;COL&#39;]
 dimsets {(&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;): [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;, &#39;nitrogendioxide_tropospheric_column&#39;, &#39;nitrogendioxide_total_column&#39;, &#39;tm5_tropopause_layer_index&#39;, &#39;surface_pressure&#39;], (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;, &#39;layer&#39;): [&#39;averaging_kernel&#39;]}
 Making geometry
-Geometry has 155871 rows (2.5s)
+Geometry has 155871 rows (2.8s)
 Making overlay
 Overlay has 191171 rows (2.2s)
 Adding weights
@@ -172,7 +173,7 @@ defaults [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;
 griddims [&#39;ROW&#39;, &#39;COL&#39;]
 dimsets {(&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;): [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;, &#39;nitrogendioxide_tropospheric_column&#39;, &#39;nitrogendioxide_total_column&#39;, &#39;tm5_tropopause_layer_index&#39;, &#39;surface_pressure&#39;], (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;, &#39;layer&#39;): [&#39;averaging_kernel&#39;]}
 Making geometry
-Geometry has 112140 rows (2.0s)
+Geometry has 112140 rows (1.9s)
 Making overlay
 Overlay has 124190 rows (1.4s)
 Adding weights
@@ -200,7 +201,7 @@ defaults [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;
 griddims [&#39;ROW&#39;, &#39;COL&#39;]
 dimsets {(&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;): [&#39;air_mass_factor_total&#39;, &#39;air_mass_factor_troposphere&#39;, &#39;nitrogendioxide_tropospheric_column&#39;, &#39;nitrogendioxide_total_column&#39;, &#39;tm5_tropopause_layer_index&#39;, &#39;surface_pressure&#39;], (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;, &#39;layer&#39;): [&#39;averaging_kernel&#39;]}
 Making geometry
-Geometry has 31 rows (0.1s)
+Geometry has 31 rows (0.2s)
 Making overlay
 Overlay has 0 rows (0.0s)
 Adding weights
@@ -270,7 +271,7 @@ Working on (&#39;time&#39;, &#39;scanline&#39;, &#39;ground_pixel&#39;, &#39;lay
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">figpath</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_run_satellite_02_tropomiak_001.png" srcset="../../_images/sphx_glr_run_satellite_02_tropomiak_001.png" alt="TSTEP = 2016-06-10, TSTEP = 2016-06-10, NO2 and Sensitivity, longitude = -118.5 [Degrees east], latitude = 3..." class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 41.944 seconds)</p>
+<img src="../../_images/sphx_glr_run_satellite_02_tropomiak_001.png" srcset="../../_images/sphx_glr_run_satellite_02_tropomiak_001.png" alt="TSTEP = 2016-06-10, TSTEP = 2016-06-10, NO2 and Sensitivity, longitude = -118.5 [Degrees east], latitude = 3..." class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 40.021 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-satellite-run-satellite-02-tropomiak-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/2c64e52b6b1f0a744240ebbb36892d76/run_satellite_02_tropomiak.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_satellite_02_tropomiak.ipynb</span></code></a></p>

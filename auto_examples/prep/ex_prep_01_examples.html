@@ -53,22 +53,19 @@ to download the full example code.</p>
 <li><p>Navigate to the tutorial <a class="reference external" href="http://github.com/barronh/camxpython">http://github.com/barronh/camxpython</a></p></li>
 <li><p>Go to the documentation and Examples.</p></li>
 <li><p>Find “Download all examples in Python source code: auto_examples_python.zip” and download it.</p></li>
+<li><p>Make a <cite>~/examples</cite> and copy the <cite>auto_examples_python.zip</cite> file there.</p></li>
+<li><p>Unzip the <cite>auto_examples_python.zip</cite> (<cite>unzip auto_examples_python.zip</cite>).</p></li>
 </ol>
-<p>4. Make a <cite>~/examples</cite> and copy the <cite>auto_examples_python.zip</cite> file there.
-* Unzip the <cite>auto_examples_python.zip</cite> (<cite>unzip auto_examples_python.zip</cite>).</p>
 <p>This can be done directly right clicking on the zip link and choosing copy link.
 Then pasting that link as shown below</p>
-<p>..code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># The url below must be updated by righ clicking on the downloadurl may change
 # you must edit the line below or it will not work
 url=&quot;&lt;LINK-GOES-HERE&gt;&quot;
 wget -N ${url}
-mkdir -p ~/examples
 unzip -d ~/examples auto_examples_python.zip
 </pre></div>
 </div>
-<p>When you’re done, run <cite>tree -L 2 ~/examples</cite>. You should get something like</p>
-<p>..code:</p>
+<p>When you’re done, run <cite>tree -L 2 ~/examples</cite>. You should get something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>examples/
 |-- gridemiss
 |   |-- run_gridemiss_01.py

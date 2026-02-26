@@ -59,7 +59,7 @@ Configuration
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-48
+.. GENERATED FROM PYTHON SOURCE LINES 29-49
 
 .. code-block:: Python
 
@@ -76,6 +76,7 @@ Imports and Folders
     # Define input paths
     sdate = '2016' + date.replace('-', '')[4:]  # pair 2019 satellite with 2016 model...
     cpath = f'../../camx/outputs/CAMx.v7.32.36.12.{sdate}.3D.avrg.grd01.nc'
+    # If you used camx.tar.gz for inputs, update the met folder to metss
     mpath = f'../../camx/met/camx.3d.36km.{sdate}.nc'
 
     # Define outputpaths
@@ -89,12 +90,12 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-51
+.. GENERATED FROM PYTHON SOURCE LINES 50-52
 
 Satellite to CMAQ/CAMx Grid
 '''''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-72
+.. GENERATED FROM PYTHON SOURCE LINES 52-73
 
 .. code-block:: Python
 
@@ -136,7 +137,7 @@ Satellite to CMAQ/CAMx Grid
     Making geometry
     Geometry has 136075 rows (2.2s)
     Making overlay
-    Overlay has 151928 rows (2.1s)
+    Overlay has 151928 rows (1.9s)
     Adding weights
     Working on ('time', 'scanline', 'ground_pixel')
      - Making dataframe
@@ -151,7 +152,7 @@ Satellite to CMAQ/CAMx Grid
        - Dataframe has 4626550 rows
      - Adding intx geometry
        - Unstacking ['layer']
-       - Weighted inputs has 151928 rows (1.2s)
+       - Weighted inputs has 151928 rows (1.3s)
      - Weighting
     /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:461: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
       ngdf = ngdf.stack(notgeodims)
@@ -162,7 +163,7 @@ Satellite to CMAQ/CAMx Grid
     griddims ['ROW', 'COL']
     dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
     Making geometry
-    Geometry has 155871 rows (2.5s)
+    Geometry has 155871 rows (2.8s)
     Making overlay
     Overlay has 191171 rows (2.2s)
     Adding weights
@@ -190,7 +191,7 @@ Satellite to CMAQ/CAMx Grid
     griddims ['ROW', 'COL']
     dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
     Making geometry
-    Geometry has 112140 rows (2.0s)
+    Geometry has 112140 rows (1.9s)
     Making overlay
     Overlay has 124190 rows (1.4s)
     Adding weights
@@ -218,7 +219,7 @@ Satellite to CMAQ/CAMx Grid
     griddims ['ROW', 'COL']
     dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
     Making geometry
-    Geometry has 31 rows (0.1s)
+    Geometry has 31 rows (0.2s)
     Making overlay
     Overlay has 0 rows (0.0s)
     Adding weights
@@ -247,12 +248,12 @@ Satellite to CMAQ/CAMx Grid
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-75
+.. GENERATED FROM PYTHON SOURCE LINES 74-76
 
 CMAQ/CAMx to Satellite
 ''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-94
+.. GENERATED FROM PYTHON SOURCE LINES 76-95
 
 .. code-block:: Python
 
@@ -282,12 +283,12 @@ CMAQ/CAMx to Satellite
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-97
+.. GENERATED FROM PYTHON SOURCE LINES 96-98
 
 Make a Plot Comparison
 ''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-115
+.. GENERATED FROM PYTHON SOURCE LINES 98-116
 
 .. code-block:: Python
 
@@ -324,7 +325,7 @@ Make a Plot Comparison
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 41.944 seconds)
+   **Total running time of the script:** (0 minutes 40.021 seconds)
 
 
 .. _sphx_glr_download_auto_examples_satellite_run_satellite_02_tropomiak.py:

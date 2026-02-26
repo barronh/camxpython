@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:04.185** total execution time for 14 files **from all galleries**:
+**01:02.732** total execution time for 14 files **from all galleries**:
 
 .. container::
 
@@ -32,13 +32,16 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_ptsrce_run_ptsrce_02_editlonlatbox.py` (``../examples/ptsrce/run_ptsrce_02_editlonlatbox.py``)
-     - 00:04.185
+   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_02_tropomiak.py` (``../examples/satellite/run_satellite_02_tropomiak.py``)
+     - 00:40.021
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``../examples/gridemiss/run_gridemiss_01_perturb.py``)
-     - 00:00.000
+   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_01_simpleomi.py` (``../examples/satellite/run_satellite_01_simpleomi.py``)
+     - 00:12.816
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_02_perturbbox.py` (``../examples/gridemiss/run_gridemiss_02_perturbbox.py``)
+     - 00:09.895
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``../examples/gridemiss/run_gridemiss_01_perturb.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_interlude_ex_camxrerun.py` (``../examples/interlude/ex_camxrerun.py``)
@@ -68,9 +71,6 @@ Computation times
    * - :ref:`sphx_glr_auto_examples_ptsrce_run_ptsrce_01_singlesource.py` (``../examples/ptsrce/run_ptsrce_01_singlesource.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_01_simpleomi.py` (``../examples/satellite/run_satellite_01_simpleomi.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_02_tropomiak.py` (``../examples/satellite/run_satellite_02_tropomiak.py``)
+   * - :ref:`sphx_glr_auto_examples_ptsrce_run_ptsrce_02_editlonlatbox.py` (``../examples/ptsrce/run_ptsrce_02_editlonlatbox.py``)
      - 00:00.000
      - 0.0

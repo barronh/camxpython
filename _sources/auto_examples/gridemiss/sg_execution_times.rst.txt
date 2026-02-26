@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:09.952** total execution time for 2 files **from auto_examples/gridemiss**:
+**00:09.895** total execution time for 2 files **from auto_examples/gridemiss**:
 
 .. container::
 
@@ -32,9 +32,9 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``run_gridemiss_01_perturb.py``)
-     - 00:08.584
-     - 0.0
    * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_02_perturbbox.py` (``run_gridemiss_02_perturbbox.py``)
-     - 00:01.368
+     - 00:09.895
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``run_gridemiss_01_perturb.py``)
+     - 00:00.000
      - 0.0

@@ -39,6 +39,7 @@ os.makedirs('outputs', exist_ok=True)
 # Define input paths
 sdate = '2016' + date.replace('-', '')[4:]  # pair 2019 satellite with 2016 model...
 cpath = f'../../camx/outputs/CAMx.v7.32.36.12.{sdate}.3D.avrg.grd01.nc'
+# If you used camx.tar.gz for inputs, update the met folder to metss
 mpath = f'../../camx/met/camx.3d.36km.{sdate}.nc'
 
 # Define outputpaths

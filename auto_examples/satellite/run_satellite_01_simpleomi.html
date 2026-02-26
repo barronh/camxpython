@@ -76,6 +76,7 @@ CAMx to use OMI’s profile. Each has strengths and weaknesses.</p>
 
 <span class="c1"># Use dates to find avrg file and 3d met file</span>
 <span class="n">cpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../camx/outputs/CAMx.v7.32.36.12.</span><span class="si">{</span><span class="n">cdate</span><span class="si">}</span><span class="s1">.3D.avrg.grd01.nc&#39;</span>
+<span class="c1"># If you used camx.tar.gz for inputs, update the met folder to metss</span>
 <span class="n">mpath</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../camx/met/camx.3d.36km.</span><span class="si">{</span><span class="n">cdate</span><span class="si">}</span><span class="s1">.nc&#39;</span>
 
 <span class="c1"># Define output paths.</span>
@@ -97,10 +98,6 @@ CAMx to use OMI’s profile. Each has strengths and weaknesses.</p>
 <span class="c1"># Process OMI for the CAMx grid</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">pyrsig</span><span class="o">.</span><span class="n">RsigApi</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="n">workdir</span><span class="o">=</span><span class="s1">&#39;outputs&#39;</span><span class="p">,</span> <span class="n">grid_kw</span><span class="o">=</span><span class="n">cf</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
 <span class="n">omids</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">to_ioapi</span><span class="p">(</span><span class="s1">&#39;omi.l2.omno2.ColumnAmountNO2Trop&#39;</span><span class="p">,</span> <span class="n">bdate</span><span class="o">=</span><span class="n">odate</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Using cached: outputs/omi.l2.omno2.ColumnAmountNO2Trop_2017-06-10T000000Z_2017-06-10T235959Z.nc.gz
-Using cached: outputs/omi.l2.omno2.ColumnAmountNO2Trop_2017-06-10T000000Z_2017-06-10T235959Z.nc
 </pre></div>
 </div>
 </section>
@@ -191,7 +188,7 @@ Using cached: outputs/omi.l2.omno2.ColumnAmountNO2Trop_2017-06-10T000000Z_2017-0
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">scatterpath</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_run_satellite_01_simpleomi_002.png" srcset="../../_images/sphx_glr_run_satellite_01_simpleomi_002.png" alt="tropNO2 molecules/cm2" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 11.509 seconds)</p>
+<img src="../../_images/sphx_glr_run_satellite_01_simpleomi_002.png" srcset="../../_images/sphx_glr_run_satellite_01_simpleomi_002.png" alt="tropNO2 molecules/cm2" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 12.816 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-satellite-run-satellite-01-simpleomi-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/969c2f52b0f039cf224332e8eec8a485/run_satellite_01_simpleomi.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_satellite_01_simpleomi.ipynb</span></code></a></p>
