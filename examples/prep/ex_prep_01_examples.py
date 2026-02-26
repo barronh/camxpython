@@ -2,23 +2,22 @@
 Get Examples Folder
 ===================
 
-The section describes how to get all the exmamples as python files.
+The section describes how to get all the examples as python files.
 
 Steps:
 
-1. Navigate to the tutorial http://github.com/barronh/camxpython
-2. Go to the documentation and Examples.
-3. Find "Download all examples in Python source code: auto_examples_python.zip" and download it.
-4. Make a `~/examples` and copy the `auto_examples_python.zip` file there.
-5. Unzip the `auto_examples_python.zip` (`unzip auto_examples_python.zip`).
+1. Go to the bottom of the [Examples page](https://barronh.github.io/camxpython/auto_examples/index.html).
+2. Download the zip file "Download all examples in Python source code: auto_examples_python.zip".
+3. Unzip the `auto_examples_python.zip` into `~/examples`.
 
-This can be done directly right clicking on the zip link and choosing copy link.
-Then pasting that link as shown below
+This can be done by right clicking on the zip link, choosing copy link, and
+using the link in the code below:
 
 .. code::
 
-    # The url below must be updated by righ clicking on the downloadurl may change
-    # you must edit the line below or it will not work
+    # you must edit the line below, or it will not work
+    # something like:
+    #  url="https://barronh.github.io/camxpython/_downloads/07fcc19ba03226cd3d83d4e40ec44385/auto_examples_python.zip"
     url="<LINK-GOES-HERE>"
     wget -N ${url}
     unzip -d ~/examples auto_examples_python.zip
