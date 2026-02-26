@@ -30,12 +30,14 @@ The basic steps are:
 3. Scale by a multiplicative factor.
 4. Plot the old and new result.
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-18
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 18-20
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-32
+.. GENERATED FROM PYTHON SOURCE LINES 20-34
 
 .. code-block:: Python
 
@@ -60,12 +62,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-35
+.. GENERATED FROM PYTHON SOURCE LINES 35-37
 
 Imports and File Prep
 '''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 35-43
+.. GENERATED FROM PYTHON SOURCE LINES 37-45
 
 .. code-block:: Python
 
@@ -90,14 +92,14 @@ Imports and File Prep
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-48
+.. GENERATED FROM PYTHON SOURCE LINES 46-50
 
 Open Files
 ''''''''''
 - Open the existing file in read-only mode
 - Open the new file in editable append mode
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-52
+.. GENERATED FROM PYTHON SOURCE LINES 50-54
 
 .. code-block:: Python
 
@@ -112,13 +114,13 @@ Open Files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-56
+.. GENERATED FROM PYTHON SOURCE LINES 55-58
 
 Select Emission Variables to Scale
 ''''''''''''''''''''''''''''''''''
 - if scalekeys is all, identify all emission variables by unit
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-67
+.. GENERATED FROM PYTHON SOURCE LINES 58-69
 
 .. code-block:: Python
 
@@ -147,12 +149,12 @@ Select Emission Variables to Scale
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-70
+.. GENERATED FROM PYTHON SOURCE LINES 70-72
 
 Apply Scaling
 -------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-81
+.. GENERATED FROM PYTHON SOURCE LINES 72-83
 
 .. code-block:: Python
 
@@ -182,12 +184,12 @@ Apply Scaling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-84
+.. GENERATED FROM PYTHON SOURCE LINES 84-86
 
 Plot Comparison
 '''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-100
+.. GENERATED FROM PYTHON SOURCE LINES 86-102
 
 .. code-block:: Python
 
@@ -222,7 +224,7 @@ Plot Comparison
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.125 seconds)
+   **Total running time of the script:** (0 minutes 8.584 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gridemiss_run_gridemiss_01_perturb.py:

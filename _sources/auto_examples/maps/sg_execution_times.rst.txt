@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.199** total execution time for 1 file **from auto_examples/maps**:
+**00:08.172** total execution time for 1 file **from auto_examples/maps**:
 
 .. container::
 
@@ -33,5 +33,5 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_maps_run_maps_01_compare.py` (``run_maps_01_compare.py``)
-     - 00:00.199
+     - 00:08.172
      - 0.0

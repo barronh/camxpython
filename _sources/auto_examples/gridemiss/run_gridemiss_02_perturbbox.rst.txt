@@ -33,12 +33,14 @@ The basic steps are:
 4. Scale by a multiplicative factor.
 5. Plot the old and new result.
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-21
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 21-23
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-39
+.. GENERATED FROM PYTHON SOURCE LINES 23-41
 
 .. code-block:: Python
 
@@ -67,12 +69,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-42
+.. GENERATED FROM PYTHON SOURCE LINES 42-44
 
 Imports and File Prep
 '''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-53
+.. GENERATED FROM PYTHON SOURCE LINES 44-55
 
 .. code-block:: Python
 
@@ -94,14 +96,14 @@ Imports and File Prep
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-58
+.. GENERATED FROM PYTHON SOURCE LINES 56-60
 
 Open Files
 ''''''''''
 - Open the existing file in read-only mode
 - Open the new file in editable append mode
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-62
+.. GENERATED FROM PYTHON SOURCE LINES 60-64
 
 .. code-block:: Python
 
@@ -116,13 +118,13 @@ Open Files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-66
+.. GENERATED FROM PYTHON SOURCE LINES 65-68
 
 Select Emission Variables to Scale
 ''''''''''''''''''''''''''''''''''
 if scalespecies is all, identify emission variables by unit
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-77
+.. GENERATED FROM PYTHON SOURCE LINES 68-79
 
 .. code-block:: Python
 
@@ -151,14 +153,14 @@ if scalespecies is all, identify emission variables by unit
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-82
+.. GENERATED FROM PYTHON SOURCE LINES 80-84
 
 Define Emission Coordinates
 '''''''''''''''''''''''''''
 - define a projection based on file metadata,
 - define coordinates for cell centroids
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-97
+.. GENERATED FROM PYTHON SOURCE LINES 84-99
 
 .. code-block:: Python
 
@@ -184,14 +186,14 @@ Define Emission Coordinates
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-102
+.. GENERATED FROM PYTHON SOURCE LINES 100-104
 
 Define an area for scaling
 ''''''''''''''''''''''''''
 - define a projected box of interest,
 - optionally, define a complex area from US Census shapefile
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-125
+.. GENERATED FROM PYTHON SOURCE LINES 104-127
 
 .. code-block:: Python
 
@@ -231,12 +233,12 @@ Define an area for scaling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 126-128
+.. GENERATED FROM PYTHON SOURCE LINES 128-130
 
 Define Scaling Factor
 '''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-136
+.. GENERATED FROM PYTHON SOURCE LINES 130-138
 
 .. code-block:: Python
 
@@ -264,12 +266,12 @@ Define Scaling Factor
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 137-139
+.. GENERATED FROM PYTHON SOURCE LINES 139-141
 
 Apply Scaling
 -------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-150
+.. GENERATED FROM PYTHON SOURCE LINES 141-152
 
 .. code-block:: Python
 
@@ -299,12 +301,12 @@ Apply Scaling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 151-153
+.. GENERATED FROM PYTHON SOURCE LINES 153-155
 
 Plot Comparison
 '''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-180
+.. GENERATED FROM PYTHON SOURCE LINES 155-182
 
 .. code-block:: Python
 
@@ -347,7 +349,7 @@ Plot Comparison
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 181-185
+.. GENERATED FROM PYTHON SOURCE LINES 183-187
 
 Extra Credit
 ''''''''''''
@@ -357,7 +359,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.403 seconds)
+   **Total running time of the script:** (0 minutes 1.368 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gridemiss_run_gridemiss_02_perturbbox.py:

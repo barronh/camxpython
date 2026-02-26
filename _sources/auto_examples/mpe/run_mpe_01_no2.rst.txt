@@ -30,12 +30,14 @@ The basic steps are:
 3. Add CAMx hourly model data to the observations CSV file..
 4. Plot a time series
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-18
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 18-20
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-35
+.. GENERATED FROM PYTHON SOURCE LINES 20-37
 
 .. code-block:: Python
 
@@ -63,12 +65,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-38
+.. GENERATED FROM PYTHON SOURCE LINES 38-40
 
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-45
+.. GENERATED FROM PYTHON SOURCE LINES 40-47
 
 .. code-block:: Python
 
@@ -86,12 +88,12 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-48
+.. GENERATED FROM PYTHON SOURCE LINES 48-50
 
 Query Observations for each model file
 ''''''''''''''''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-62
+.. GENERATED FROM PYTHON SOURCE LINES 50-64
 
 .. code-block:: Python
 
@@ -113,15 +115,22 @@ Query Observations for each model file
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Using cached: outputs/airnow.no2_2016-06-10T000000Z_2016-06-10T235959Z.csv.gz
+    Using cached: outputs/airnow.no2_2016-06-11T000000Z_2016-06-11T235959Z.csv.gz
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-65
+
+.. GENERATED FROM PYTHON SOURCE LINES 65-67
 
 Calculate Statistics
 ''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-73
+.. GENERATED FROM PYTHON SOURCE LINES 67-75
 
 .. code-block:: Python
 
@@ -159,12 +168,12 @@ Calculate Statistics
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-76
+.. GENERATED FROM PYTHON SOURCE LINES 76-78
 
 Make a Plot
 '''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-83
+.. GENERATED FROM PYTHON SOURCE LINES 78-85
 
 .. code-block:: Python
 
@@ -187,7 +196,7 @@ Make a Plot
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-88
+.. GENERATED FROM PYTHON SOURCE LINES 86-90
 
 Extra Credit
 ''''''''''''
@@ -197,7 +206,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 8.668 seconds)
+   **Total running time of the script:** (0 minutes 1.537 seconds)
 
 
 .. _sphx_glr_download_auto_examples_mpe_run_mpe_01_no2.py:

@@ -21,12 +21,29 @@
 Compare Two CAMx Runs
 =====================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-10
+This example compares the standard CAMx v7.3 tutorial simulation to one with
+updated emissions. The updated emissions come from earlier examples. Those
+examples adjusted NOx in four ways:
+
+1. scaled mobile NOx across the whole 36km domain,
+2. scaled mobile NOx within Georgia,
+3. created a synthetic source,
+4. increased NOx from a collection of stacks in a location,
+
+The plots created here show the changes in ozone in the 12km domain:
+
+* small increases around the domain edges from scaling in the 36km,
+* a small increase near the scaled collection of stack, and
+* larger increases near Atlanta due to NOx scaling in Georgia. 
+
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 24-26
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-20
+.. GENERATED FROM PYTHON SOURCE LINES 26-36
 
 .. code-block:: Python
 
@@ -34,9 +51,9 @@ Configuration
     # date to process
     date = '20160610'
     # file to use as input
-    oldpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D.avrg.grd02.nc'
+    oldpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.avrg.grd02.nc'
     # file to create
-    newpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D_EDIT.avrg.grd02.nc'
+    newpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.2D_EDIT.avrg.grd02.nc'
     # figure demonstrating the change
     figpath = 'outputs/ozone_compare.png'
 
@@ -47,12 +64,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-23
+.. GENERATED FROM PYTHON SOURCE LINES 37-39
 
 Imports and File Prep
 '''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 23-33
+.. GENERATED FROM PYTHON SOURCE LINES 39-49
 
 .. code-block:: Python
 
@@ -73,14 +90,14 @@ Imports and File Prep
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-38
+.. GENERATED FROM PYTHON SOURCE LINES 50-54
 
 Open Files
 ''''''''''
 - Open the existing file in read-only mode
 - Open the new file in read-only append mode
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-43
+.. GENERATED FROM PYTHON SOURCE LINES 54-59
 
 .. code-block:: Python
 
@@ -96,12 +113,12 @@ Open Files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-46
+.. GENERATED FROM PYTHON SOURCE LINES 60-62
 
 Plot Comparison
 '''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-71
+.. GENERATED FROM PYTHON SOURCE LINES 62-87
 
 .. code-block:: Python
 
@@ -132,17 +149,12 @@ Plot Comparison
     fca.fig.savefig(figpath)
 
 
-.. rst-class:: sphx-glr-script-out
 
-.. code-block:: pytb
+.. image-sg:: /auto_examples/maps/images/sphx_glr_run_maps_01_compare_001.png
+   :alt: version = New, version = Old
+   :srcset: /auto_examples/maps/images/sphx_glr_run_maps_01_compare_001.png
+   :class: sphx-glr-single-img
 
-    Traceback (most recent call last):
-      File "/work/ROMO/users/bhenders/SESARMTraining/examples/maps/run_maps_01_compare.py", line 53, in <module>
-        compfile['New'] = newfile[key].isel(LAY=0).max('TSTEP') * 1000
-                          ~~~~~~~^^^^^
-      File "/work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/xarray/core/dataset.py", line 1357, in __getitem__
-        raise KeyError(message) from e
-    KeyError: "No variable named 'O3'. Variables on the dataset include ['X', 'Y', 'layer', 'TFLAG', 'ETFLAG', ..., 'latitude', 'TSTEP', 'LAY', 'ROW', 'COL']"
 
 
 
@@ -150,7 +162,7 @@ Plot Comparison
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.199 seconds)
+   **Total running time of the script:** (0 minutes 8.172 seconds)
 
 
 .. _sphx_glr_download_auto_examples_maps_run_maps_01_compare.py:

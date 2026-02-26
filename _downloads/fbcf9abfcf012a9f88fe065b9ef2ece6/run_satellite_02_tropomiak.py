@@ -9,7 +9,7 @@ TropOMI to the CAMx grid, (3) subseting CAMx to just overpass times, (4)
 filtering CAMx to valid retrieval pixels/layers, and (5) applying the CAMx
 a priori shape to the TropOMI retrieval.
 
-The application of 
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%
@@ -57,7 +57,7 @@ satreader = csp.reader_dict[satname]
 
 # Download input files
 dests = satreader.cmr_download(
-    temporal=f'{date}T17:00:00Z/{date}T17:59:59Z',
+    temporal=f'{date}T17:00:00Z/{date}T23:59:59Z',
     bbox=cg.csp.bbox(), verbose=1
 )
 
@@ -82,22 +82,9 @@ mkeys = ['pressure', 'z', 'temperature', 'humidity']
 mf = csp.open_ioapi(mpath)[mkeys].interp(TSTEP=cf.TSTEP)
 
 # Reorganize like CMAQ for cmaqsatproc
-qf = mf[['pressure', 'z']].rename(pressure='PRES', z='ZF')
-qf['PRES'] = qf['PRES'] * 100  # pressure from mb to PRES in Pascals
-qf['PRES'].attrs.update(units='Pa')
+qf = mf[mkeys]
+qf['PRES'] = qf['pressure'] * 100.
 qf['NO2'] = cf['NO2'].dims, cf['NO2'].data, cf['NO2'].attrs
-
-# Add dry density of air in as in METCRO3D -- DENS:units = "KG/M**3         " ;
-# mb 100Pa / 1mb] = Pa
-# Pa * m**-3 Pa**-1 * K * mol * K**-1 = mol / m3
-# kg m**-3
-dens = (
-    mf['pressure'] * 100 / 8.314 / mf['temperature']  # moles/m3
-    * (1 - mf['humidity'] / 1e6)  # moles_dry/m3
-    * .0289628  # kg/m3
-)
-dens.attrs.update(units='KG/M**3', long_name='DENS', var_desc='dry air density')
-qf['DENS'] = dens
 
 # Create satellite according to CMAQ, and CMAQ according to satellite
 overf = satreader.cmaq_process(qf, l3)

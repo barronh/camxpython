@@ -31,12 +31,14 @@ The basic steps are:
 3. Save out result.
 4. Visualize result.
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-19
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 19-21
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-29
+.. GENERATED FROM PYTHON SOURCE LINES 21-31
 
 .. code-block:: Python
 
@@ -57,12 +59,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-32
+.. GENERATED FROM PYTHON SOURCE LINES 32-34
 
 Imports
 '''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-36
+.. GENERATED FROM PYTHON SOURCE LINES 34-38
 
 .. code-block:: Python
 
@@ -77,12 +79,12 @@ Imports
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-39
+.. GENERATED FROM PYTHON SOURCE LINES 39-41
 
 Pepare Folders
 ''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-44
+.. GENERATED FROM PYTHON SOURCE LINES 41-46
 
 .. code-block:: Python
 
@@ -98,7 +100,7 @@ Pepare Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-50
+.. GENERATED FROM PYTHON SOURCE LINES 47-52
 
 Create a Single Source File
 '''''''''''''''''''''''''''
@@ -106,7 +108,7 @@ Create a Single Source File
 - Oddly, each point source is an element of the COL dimension.
 - Average the COL dimension to make an "average" point source.
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-56
+.. GENERATED FROM PYTHON SOURCE LINES 52-58
 
 .. code-block:: Python
 
@@ -269,12 +271,12 @@ Create a Single Source File
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-59
+.. GENERATED FROM PYTHON SOURCE LINES 59-61
 
 Visualize Source to confirm operational
 '''''''''''''''''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-101
+.. GENERATED FROM PYTHON SOURCE LINES 61-103
 
 .. code-block:: Python
 
@@ -341,7 +343,7 @@ Visualize Source to confirm operational
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-106
+.. GENERATED FROM PYTHON SOURCE LINES 104-108
 
 Extra Credit
 ''''''''''''
@@ -351,7 +353,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 10.493 seconds)
+   **Total running time of the script:** (0 minutes 11.495 seconds)
 
 
 .. _sphx_glr_download_auto_examples_ptsrce_run_ptsrce_01_singlesource.py:

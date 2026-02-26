@@ -6,7 +6,6 @@ Making CAMx Maps
 ----------------
 
 - Compare originally run CAMx to new run with new emissions.
-- Simple comparison of ozone in ppb.
 
 
 
@@ -18,14 +17,14 @@ Making CAMx Maps
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Compare Two CAMx Runs">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example compares the standard CAMx v7.3 tutorial simulation to one with updated emissions. The updated emissions come from earlier examples. Those examples adjusted NOx in four ways:">
 
 .. only:: html
 
-  .. image:: /auto_examples/maps/images/thumb/sphx_glr_ex_maps_01_compare_thumb.png
+  .. image:: /auto_examples/maps/images/thumb/sphx_glr_run_maps_01_compare_thumb.png
     :alt:
 
-  :doc:`/auto_examples/maps/ex_maps_01_compare`
+  :doc:`/auto_examples/maps/run_maps_01_compare`
 
 .. raw:: html
 
@@ -43,5 +42,5 @@ Making CAMx Maps
 .. toctree::
    :hidden:
 
-   /auto_examples/maps/ex_maps_01_compare
+   /auto_examples/maps/run_maps_01_compare
 

@@ -50,8 +50,8 @@ Below is a bash command that makes a requirements.txt
      
      !--- Output specifications ---
      
-    - Root_Output_Name         = '$OUTPUT/CAMx.$RUN.${CALDAY}.3D',
-    + Root_Output_Name         = '$OUTPUT/CAMx.$RUN.${CALDAY}.3D_EDIT',
+    - Root_Output_Name         = '$OUTPUT/CAMx.$RUN.${CALDAY}',
+    + Root_Output_Name         = '$OUTPUT/CAMx.$RUN.${CALDAY}.2D_EDIT',
       Average_Output_3D        = .true.,
       NetCDF_Format_Output     = .true.,
       NetCDF_Use_Compression   = .false.,

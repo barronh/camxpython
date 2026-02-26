@@ -33,12 +33,14 @@ The basic steps are:
 5. Calculate statistics.
 6. Plot a time series
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-22
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 21-23
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-39
+.. GENERATED FROM PYTHON SOURCE LINES 23-40
 
 .. code-block:: Python
 
@@ -66,12 +68,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-42
+.. GENERATED FROM PYTHON SOURCE LINES 41-43
 
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-50
+.. GENERATED FROM PYTHON SOURCE LINES 43-51
 
 .. code-block:: Python
 
@@ -90,12 +92,12 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-53
+.. GENERATED FROM PYTHON SOURCE LINES 52-54
 
 Query Observations for Model file
 '''''''''''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-68
+.. GENERATED FROM PYTHON SOURCE LINES 54-69
 
 .. code-block:: Python
 
@@ -118,15 +120,22 @@ Query Observations for Model file
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Using cached: outputs/airnow.ozone_2016-06-10T000000Z_2016-06-10T235959Z.csv.gz
+    Using cached: outputs/airnow.ozone_2016-06-11T000000Z_2016-06-11T235959Z.csv.gz
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-71
+
+.. GENERATED FROM PYTHON SOURCE LINES 70-72
 
 Calculate Hourly Statistics
 '''''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-77
+.. GENERATED FROM PYTHON SOURCE LINES 72-78
 
 .. code-block:: Python
 
@@ -162,7 +171,7 @@ Calculate Hourly Statistics
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-86
+.. GENERATED FROM PYTHON SOURCE LINES 79-87
 
 40 CFR Appendix U to Part 50
 ''''''''''''''''''''''''''''
@@ -173,7 +182,7 @@ Calculate Hourly Statistics
 
 https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-93
+.. GENERATED FROM PYTHON SOURCE LINES 89-94
 
 Step 3(a): Adjust Times to LST
 //////////////////////////////
@@ -181,7 +190,7 @@ Step 3(a): Adjust Times to LST
 - Convert tz-aware UTC to tz-naive LST
 - not truncating
 
-.. GENERATED FROM PYTHON SOURCE LINES 93-98
+.. GENERATED FROM PYTHON SOURCE LINES 94-99
 
 .. code-block:: Python
 
@@ -197,7 +206,7 @@ Step 3(a): Adjust Times to LST
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-104
+.. GENERATED FROM PYTHON SOURCE LINES 100-105
 
 Step 3(b): Calculate 8h averages
 ////////////////////////////////
@@ -205,7 +214,7 @@ for each site:
 1. regularize to hourly data with missing nans
 2. create 8h averages only valid when 6 or more available
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-112
+.. GENERATED FROM PYTHON SOURCE LINES 105-113
 
 .. code-block:: Python
 
@@ -225,13 +234,13 @@ for each site:
 
  .. code-block:: none
 
-    /work/ROMO/users/bhenders/SESARMTraining/examples/mpe/run_mpe_02_o3mda8.py:105: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+    /work/ROMO/users/bhenders/SESARMTraining/examples/mpe/run_mpe_02_o3mda8.py:106: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
       a8df = df[['STATION', 'time_lst', obskey, modkey]].groupby('STATION').apply(
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 113-118
+.. GENERATED FROM PYTHON SOURCE LINES 114-119
 
 Step 3(c): Calculate 8h averages
 ////////////////////////////////
@@ -239,7 +248,7 @@ Pandas labels 8h means based on start time in LST
 1. regularize to hourly data with missing nans
 2. remove 00-06 LST hours that duplicate previous day's hours
 
-.. GENERATED FROM PYTHON SOURCE LINES 118-132
+.. GENERATED FROM PYTHON SOURCE LINES 119-133
 
 .. code-block:: Python
 
@@ -270,7 +279,7 @@ Pandas labels 8h means based on start time in LST
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-138
+.. GENERATED FROM PYTHON SOURCE LINES 134-139
 
 Step 3(d): Calculate daily maxima
 /////////////////////////////////
@@ -278,7 +287,7 @@ For each STATION,
 - get the max 8h average within a local standard day
 - remove when fewer than 13 available
 
-.. GENERATED FROM PYTHON SOURCE LINES 138-150
+.. GENERATED FROM PYTHON SOURCE LINES 139-151
 
 .. code-block:: Python
 
@@ -307,12 +316,12 @@ For each STATION,
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 151-153
+.. GENERATED FROM PYTHON SOURCE LINES 152-154
 
 Calculate MDA8 Statistics
 '''''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-160
+.. GENERATED FROM PYTHON SOURCE LINES 154-161
 
 .. code-block:: Python
 
@@ -349,12 +358,12 @@ Calculate MDA8 Statistics
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 161-163
+.. GENERATED FROM PYTHON SOURCE LINES 162-164
 
 Visualize Results
 '''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 163-182
+.. GENERATED FROM PYTHON SOURCE LINES 164-183
 
 .. code-block:: Python
 
@@ -389,7 +398,7 @@ Visualize Results
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-187
+.. GENERATED FROM PYTHON SOURCE LINES 184-188
 
 Extra Credit
 ''''''''''''
@@ -399,7 +408,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 54.055 seconds)
+   **Total running time of the script:** (0 minutes 5.288 seconds)
 
 
 .. _sphx_glr_download_auto_examples_mpe_run_mpe_02_o3mda8.py:

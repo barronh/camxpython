@@ -34,12 +34,14 @@ however, that the CAMx tropNO2 inherently assumes a different model profile.
 A more complete comparison would adjust OMI to use CAMx's profile, or adjust
 CAMx to use OMI's profile. Each has strengths and weaknesses.
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-22
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 22-24
 
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-29
+.. GENERATED FROM PYTHON SOURCE LINES 24-31
 
 .. code-block:: Python
 
@@ -57,12 +59,12 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-32
+.. GENERATED FROM PYTHON SOURCE LINES 32-34
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-46
+.. GENERATED FROM PYTHON SOURCE LINES 34-48
 
 .. code-block:: Python
 
@@ -87,12 +89,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-49
+.. GENERATED FROM PYTHON SOURCE LINES 49-51
 
 Data Acquisition
 ''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-60
+.. GENERATED FROM PYTHON SOURCE LINES 51-62
 
 .. code-block:: Python
 
@@ -111,10 +113,17 @@ Data Acquisition
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Using cached: outputs/omi.l2.omno2.ColumnAmountNO2Trop_2017-06-10T000000Z_2017-06-10T235959Z.nc.gz
+    Using cached: outputs/omi.l2.omno2.ColumnAmountNO2Trop_2017-06-10T000000Z_2017-06-10T235959Z.nc
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-67
+
+.. GENERATED FROM PYTHON SOURCE LINES 63-69
 
 Derive Conversion Factors
 '''''''''''''''''''''''''
@@ -123,7 +132,7 @@ Derive Conversion Factors
 - Need dry-air intensity (I) molecules/cm2 by layer
 - CAMx tropNO2 = $\sum_k{X(k) * I(k)}$
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-85
+.. GENERATED FROM PYTHON SOURCE LINES 69-87
 
 .. code-block:: Python
 
@@ -152,12 +161,12 @@ Derive Conversion Factors
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-88
+.. GENERATED FROM PYTHON SOURCE LINES 88-90
 
 Organizing for output
 '''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-100
+.. GENERATED FROM PYTHON SOURCE LINES 90-102
 
 .. code-block:: Python
 
@@ -180,12 +189,12 @@ Organizing for output
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 101-103
+.. GENERATED FROM PYTHON SOURCE LINES 103-105
 
 Visualize Results
 '''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 103-114
+.. GENERATED FROM PYTHON SOURCE LINES 105-116
 
 .. code-block:: Python
 
@@ -207,12 +216,12 @@ Visualize Results
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-117
+.. GENERATED FROM PYTHON SOURCE LINES 117-119
 
 Make a tile-plot
 ''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-124
+.. GENERATED FROM PYTHON SOURCE LINES 119-126
 
 .. code-block:: Python
 
@@ -235,12 +244,12 @@ Make a tile-plot
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 125-127
+.. GENERATED FROM PYTHON SOURCE LINES 127-129
 
 Make a scatter-plot
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-145
+.. GENERATED FROM PYTHON SOURCE LINES 129-147
 
 .. code-block:: Python
 
@@ -277,7 +286,7 @@ Make a scatter-plot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 11.222 seconds)
+   **Total running time of the script:** (0 minutes 11.509 seconds)
 
 
 .. _sphx_glr_download_auto_examples_satellite_run_satellite_01_simpleomi.py:

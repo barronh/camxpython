@@ -14,6 +14,7 @@ The basic steps are:
 5. Calculate statistics.
 6. Plot a time series
 
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

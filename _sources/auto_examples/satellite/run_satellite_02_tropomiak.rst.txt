@@ -28,7 +28,7 @@ TropOMI to the CAMx grid, (3) subseting CAMx to just overpass times, (4)
 filtering CAMx to valid retrieval pixels/layers, and (5) applying the CAMx
 a priori shape to the TropOMI retrieval.
 
-The application of 
+*Reminder*: You must have already activated your python environment.
 
 .. GENERATED FROM PYTHON SOURCE LINES 16-18
 
@@ -107,7 +107,7 @@ Satellite to CMAQ/CAMx Grid
 
     # Download input files
     dests = satreader.cmr_download(
-        temporal=f'{date}T17:00:00Z/{date}T17:59:59Z',
+        temporal=f'{date}T17:00:00Z/{date}T23:59:59Z',
         bbox=cg.csp.bbox(), verbose=1
     )
 
@@ -127,8 +127,8 @@ Satellite to CMAQ/CAMx Grid
 
  .. code-block:: none
 
-    {'concept_id': 'C2089270961-GES_DISC', 'page_size': '1000', 'pretty': 'false', 'temporal': '2019-06-10T17:00:00Z/2019-06-10T17:59:59Z', 'bounding_box': '-132.237011,18.856103,-54.624370,52.880721'}
-    1 links
+    {'concept_id': 'C2089270961-GES_DISC', 'page_size': '1000', 'pretty': 'false', 'temporal': '2019-06-10T17:00:00Z/2019-06-10T23:59:59Z', 'bounding_box': '-132.237011,18.856103,-54.624370,52.880721'}
+    4 links
     data.gesdisc.earthdata.nasa.gov/data/S5P_TROPOMI_Level2/S5P_L2__NO2____HiR.2/2019/161/S5P_RPRO_L2__NO2____20190610T170352_20190610T184522_08588_03_020400_20221105T173209.nc
     defaults ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'averaging_kernel', 'tm5_tropopause_layer_index', 'surface_pressure']
     griddims ['ROW', 'COL']
@@ -136,7 +136,7 @@ Satellite to CMAQ/CAMx Grid
     Making geometry
     Geometry has 136075 rows (2.2s)
     Making overlay
-    Overlay has 151928 rows (1.9s)
+    Overlay has 151928 rows (2.1s)
     Adding weights
     Working on ('time', 'scanline', 'ground_pixel')
      - Making dataframe
@@ -157,6 +157,92 @@ Satellite to CMAQ/CAMx Grid
       ngdf = ngdf.stack(notgeodims)
        - Weighted outputs has 155958 rows (0.1s)
      - Adding attributes
+    data.gesdisc.earthdata.nasa.gov/data/S5P_TROPOMI_Level2/S5P_L2__NO2____HiR.2/2019/161/S5P_RPRO_L2__NO2____20190610T184522_20190610T202652_08589_03_020400_20221105T173313.nc
+    defaults ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'averaging_kernel', 'tm5_tropopause_layer_index', 'surface_pressure']
+    griddims ['ROW', 'COL']
+    dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
+    Making geometry
+    Geometry has 155871 rows (2.5s)
+    Making overlay
+    Overlay has 191171 rows (2.2s)
+    Adding weights
+    Working on ('time', 'scanline', 'ground_pixel')
+     - Making dataframe
+       - Dataframe has 155871 rows
+     - Adding intx geometry
+       - Weighted inputs has 191171 rows (0.1s)
+     - Weighting
+       - Weighted outputs has 5964 rows (0.0s)
+     - Adding attributes
+    Working on ('time', 'scanline', 'ground_pixel', 'layer')
+     - Making dataframe
+       - Dataframe has 5299614 rows
+     - Adding intx geometry
+       - Unstacking ['layer']
+       - Weighted inputs has 191171 rows (1.4s)
+     - Weighting
+    /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:461: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
+      ngdf = ngdf.stack(notgeodims)
+       - Weighted outputs has 202776 rows (0.1s)
+     - Adding attributes
+    data.gesdisc.earthdata.nasa.gov/data/S5P_TROPOMI_Level2/S5P_L2__NO2____HiR.2/2019/161/S5P_RPRO_L2__NO2____20190610T202652_20190610T220822_08590_03_020400_20221105T173358.nc
+    defaults ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'averaging_kernel', 'tm5_tropopause_layer_index', 'surface_pressure']
+    griddims ['ROW', 'COL']
+    dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
+    Making geometry
+    Geometry has 112140 rows (2.0s)
+    Making overlay
+    Overlay has 124190 rows (1.4s)
+    Adding weights
+    Working on ('time', 'scanline', 'ground_pixel')
+     - Making dataframe
+       - Dataframe has 112140 rows
+     - Adding intx geometry
+       - Weighted inputs has 124190 rows (0.1s)
+     - Weighting
+       - Weighted outputs has 3379 rows (0.0s)
+     - Adding attributes
+    Working on ('time', 'scanline', 'ground_pixel', 'layer')
+     - Making dataframe
+       - Dataframe has 3812760 rows
+     - Adding intx geometry
+       - Unstacking ['layer']
+       - Weighted inputs has 124190 rows (1.0s)
+     - Weighting
+    /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:461: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
+      ngdf = ngdf.stack(notgeodims)
+       - Weighted outputs has 114886 rows (0.0s)
+     - Adding attributes
+    data.gesdisc.earthdata.nasa.gov/data/S5P_TROPOMI_Level2/S5P_L2__NO2____HiR.2/2019/161/S5P_RPRO_L2__NO2____20190610T220822_20190610T234951_08591_03_020400_20221105T173846.nc
+    defaults ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'averaging_kernel', 'tm5_tropopause_layer_index', 'surface_pressure']
+    griddims ['ROW', 'COL']
+    dimsets {('time', 'scanline', 'ground_pixel'): ['air_mass_factor_total', 'air_mass_factor_troposphere', 'nitrogendioxide_tropospheric_column', 'nitrogendioxide_total_column', 'tm5_tropopause_layer_index', 'surface_pressure'], ('time', 'scanline', 'ground_pixel', 'layer'): ['averaging_kernel']}
+    Making geometry
+    Geometry has 31 rows (0.1s)
+    Making overlay
+    Overlay has 0 rows (0.0s)
+    Adding weights
+    /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:284: UserWarning: All areas are zero, which likely means that geometries were points. Reverting to equal weights.
+      warnings.warn(
+    Working on ('time', 'scanline', 'ground_pixel')
+     - Making dataframe
+       - Dataframe has 31 rows
+     - Adding intx geometry
+       - Weighted inputs has 0 rows (0.0s)
+     - Weighting
+       - Weighted outputs has 0 rows (0.0s)
+     - Adding attributes
+    Working on ('time', 'scanline', 'ground_pixel', 'layer')
+     - Making dataframe
+       - Dataframe has 1054 rows
+     - Adding intx geometry
+       - Unstacking ['layer']
+       - Weighted inputs has 0 rows (0.0s)
+     - Weighting
+    /work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/cmaqsatproc/readers/core.py:461: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
+      ngdf = ngdf.stack(notgeodims)
+       - Weighted outputs has 0 rows (0.0s)
+     - Adding attributes
 
 
 
@@ -166,7 +252,7 @@ Satellite to CMAQ/CAMx Grid
 CMAQ/CAMx to Satellite
 ''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-107
+.. GENERATED FROM PYTHON SOURCE LINES 75-94
 
 .. code-block:: Python
 
@@ -180,22 +266,9 @@ CMAQ/CAMx to Satellite
     mf = csp.open_ioapi(mpath)[mkeys].interp(TSTEP=cf.TSTEP)
 
     # Reorganize like CMAQ for cmaqsatproc
-    qf = mf[['pressure', 'z']].rename(pressure='PRES', z='ZF')
-    qf['PRES'] = qf['PRES'] * 100  # pressure from mb to PRES in Pascals
-    qf['PRES'].attrs.update(units='Pa')
+    qf = mf[mkeys]
+    qf['PRES'] = qf['pressure'] * 100.
     qf['NO2'] = cf['NO2'].dims, cf['NO2'].data, cf['NO2'].attrs
-
-    # Add dry density of air in as in METCRO3D -- DENS:units = "KG/M**3         " ;
-    # mb 100Pa / 1mb] = Pa
-    # Pa * m**-3 Pa**-1 * K * mol * K**-1 = mol / m3
-    # kg m**-3
-    dens = (
-        mf['pressure'] * 100 / 8.314 / mf['temperature']  # moles/m3
-        * (1 - mf['humidity'] / 1e6)  # moles_dry/m3
-        * .0289628  # kg/m3
-    )
-    dens.attrs.update(units='KG/M**3', long_name='DENS', var_desc='dry air density')
-    qf['DENS'] = dens
 
     # Create satellite according to CMAQ, and CMAQ according to satellite
     overf = satreader.cmaq_process(qf, l3)
@@ -209,12 +282,12 @@ CMAQ/CAMx to Satellite
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 108-110
+.. GENERATED FROM PYTHON SOURCE LINES 95-97
 
 Make a Plot Comparison
 ''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-128
+.. GENERATED FROM PYTHON SOURCE LINES 97-115
 
 .. code-block:: Python
 
@@ -251,7 +324,7 @@ Make a Plot Comparison
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 30.935 seconds)
+   **Total running time of the script:** (0 minutes 41.944 seconds)
 
 
 .. _sphx_glr_download_auto_examples_satellite_run_satellite_02_tropomiak.py:

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:30.935** total execution time for 14 files **from all galleries**:
+**00:08.172** total execution time for 14 files **from all galleries**:
 
 .. container::
 
@@ -32,8 +32,8 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_02_tropomiak.py` (``../examples/satellite/run_satellite_02_tropomiak.py``)
-     - 00:30.935
+   * - :ref:`sphx_glr_auto_examples_maps_run_maps_01_compare.py` (``../examples/maps/run_maps_01_compare.py``)
+     - 00:08.172
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gridemiss_run_gridemiss_01_perturb.py` (``../examples/gridemiss/run_gridemiss_01_perturb.py``)
      - 00:00.000
@@ -42,9 +42,6 @@ Computation times
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_interlude_ex_camxrerun.py` (``../examples/interlude/ex_camxrerun.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_maps_ex_maps_01_compare.py` (``../examples/maps/ex_maps_01_compare.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_mpe_run_mpe_01_no2.py` (``../examples/mpe/run_mpe_01_no2.py``)
@@ -72,5 +69,8 @@ Computation times
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_01_simpleomi.py` (``../examples/satellite/run_satellite_01_simpleomi.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_satellite_run_satellite_02_tropomiak.py` (``../examples/satellite/run_satellite_02_tropomiak.py``)
      - 00:00.000
      - 0.0

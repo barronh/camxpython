@@ -11,6 +11,8 @@ The basic steps are:
 2. Average all points (points are COL dimension).
 3. Save out result.
 4. Visualize result.
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

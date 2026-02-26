@@ -11,7 +11,8 @@ Get and Run CAMx Testcase
 
 1. Got to camx.com
 2. Download the CAMx v7.3.2 test case inputs.
-3. Unzip test case.
+3. Make a camx folder in your home directory (`~/camx`).
+4. Unzip test case in your `~/camx` directory.
 4. Compile CAMx and run test case.
 5. Rerun test case with 3D outputs
 
@@ -45,8 +46,8 @@ When you are done, run `tree -L 2 ~/camx` and you should get something like this
     |-- outputs
     |   |-- CAMx.v7.32.36.12.20160610.3D.avrg.grd01.nc
     |   |-- CAMx.v7.32.36.12.20160610.3D.avrg.grd02.nc
-    |   |-- CAMx.v7.32.36.12.20160610.3D_EDIT.avrg.grd01.nc
-    |   |-- CAMx.v7.32.36.12.20160610.3D_EDIT.avrg.grd02.nc
+    |   |-- CAMx.v7.32.36.12.20160610.2D_EDIT.avrg.grd01.nc
+    |   |-- CAMx.v7.32.36.12.20160610.2D_EDIT.avrg.grd02.nc
     |   |-- CAMx.v7.32.36.12.20160610.avrg.grd01.nc
     |   |-- CAMx.v7.32.36.12.20160610.avrg.grd02.nc
     |   |-- CAMx.v7.32.36.12.20160611.3D.avrg.grd01.nc

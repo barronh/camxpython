@@ -34,12 +34,14 @@ The basic steps are:
 4. Apply the scaling factor to all cells within the area.
 5. Make a plot demonstrating the change.
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-22
+*Reminder*: You must have already activated your python environment.
+
+.. GENERATED FROM PYTHON SOURCE LINES 22-24
 
 Configuration
 '''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-42
+.. GENERATED FROM PYTHON SOURCE LINES 24-44
 
 .. code-block:: Python
 
@@ -70,12 +72,12 @@ Configuration
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-45
+.. GENERATED FROM PYTHON SOURCE LINES 45-47
 
 Imports and Folders
 '''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-53
+.. GENERATED FROM PYTHON SOURCE LINES 47-55
 
 .. code-block:: Python
 
@@ -94,14 +96,14 @@ Imports and Folders
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-58
+.. GENERATED FROM PYTHON SOURCE LINES 56-60
 
 Define Output and Remove if it exists
 '''''''''''''''''''''''''''''''''''''
 - Use an existing file as a template
 - Create a copy for direct modification
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-66
+.. GENERATED FROM PYTHON SOURCE LINES 60-68
 
 .. code-block:: Python
 
@@ -126,14 +128,14 @@ Define Output and Remove if it exists
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-71
+.. GENERATED FROM PYTHON SOURCE LINES 69-73
 
 Open Files
 ''''''''''
 - Open the existing file in read-only mode
 - Open the new file in append mode
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-75
+.. GENERATED FROM PYTHON SOURCE LINES 73-77
 
 .. code-block:: Python
 
@@ -148,13 +150,13 @@ Open Files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-79
+.. GENERATED FROM PYTHON SOURCE LINES 78-81
 
 Select Emission Variables to Scale
 ''''''''''''''''''''''''''''''''''
 If scalekeys is all, select all emission variables by units
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-90
+.. GENERATED FROM PYTHON SOURCE LINES 81-92
 
 .. code-block:: Python
 
@@ -183,7 +185,7 @@ If scalekeys is all, select all emission variables by units
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-98
+.. GENERATED FROM PYTHON SOURCE LINES 93-100
 
 Define relevant sources
 ''''''''''''''''''''''''
@@ -193,7 +195,7 @@ Define relevant sources
     - in a circle, or
     - within a complex custom shape
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-130
+.. GENERATED FROM PYTHON SOURCE LINES 100-132
 
 .. code-block:: Python
 
@@ -242,12 +244,12 @@ Define relevant sources
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 131-133
+.. GENERATED FROM PYTHON SOURCE LINES 133-135
 
 Apply Scaling
 -------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-143
+.. GENERATED FROM PYTHON SOURCE LINES 135-145
 
 .. code-block:: Python
 
@@ -276,14 +278,14 @@ Apply Scaling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 144-148
+.. GENERATED FROM PYTHON SOURCE LINES 146-150
 
 Visualize Source to confirm operational
 '''''''''''''''''''''''''''''''''''''''
 - Create gridded data for quick visualiation
 - Show new, original and difference.
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-186
+.. GENERATED FROM PYTHON SOURCE LINES 150-188
 
 .. code-block:: Python
 
@@ -337,7 +339,7 @@ Visualize Source to confirm operational
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 187-191
+.. GENERATED FROM PYTHON SOURCE LINES 189-193
 
 Extra Credit
 ''''''''''''
@@ -347,7 +349,7 @@ Extra Credit
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.714 seconds)
+   **Total running time of the script:** (0 minutes 3.861 seconds)
 
 
 .. _sphx_glr_download_auto_examples_ptsrce_run_ptsrce_02_editlonlatbox.py:

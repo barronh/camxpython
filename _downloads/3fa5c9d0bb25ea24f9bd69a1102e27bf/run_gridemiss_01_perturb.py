@@ -10,6 +10,8 @@ The basic steps are:
 2. Select species to scale NOx species.
 3. Scale by a multiplicative factor.
 4. Plot the old and new result.
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

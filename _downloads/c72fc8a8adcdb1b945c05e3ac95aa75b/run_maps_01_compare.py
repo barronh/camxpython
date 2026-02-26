@@ -2,6 +2,22 @@
 Compare Two CAMx Runs
 =====================
 
+This example compares the standard CAMx v7.3 tutorial simulation to one with
+updated emissions. The updated emissions come from earlier examples. Those
+examples adjusted NOx in four ways:
+
+1. scaled mobile NOx across the whole 36km domain,
+2. scaled mobile NOx within Georgia,
+3. created a synthetic source,
+4. increased NOx from a collection of stacks in a location,
+
+The plots created here show the changes in ozone in the 12km domain:
+
+* small increases around the domain edges from scaling in the 36km,
+* a small increase near the scaled collection of stack, and
+* larger increases near Atlanta due to NOx scaling in Georgia. 
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%
@@ -11,9 +27,9 @@ Compare Two CAMx Runs
 # date to process
 date = '20160610'
 # file to use as input
-oldpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D.avrg.grd02.nc'
+oldpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.avrg.grd02.nc'
 # file to create
-newpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.3D_EDIT.avrg.grd02.nc'
+newpath = f'../../camx/outputs/CAMx.v7.32.36.12.{date}.2D_EDIT.avrg.grd02.nc'
 # figure demonstrating the change
 figpath = 'outputs/ozone_compare.png'
 
