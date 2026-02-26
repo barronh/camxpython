@@ -10,7 +10,7 @@ Steps:
 2. Go to the documentation and Examples.
 3. Find "Download all examples in Python source code: auto_examples_python.zip" and download it.
 4. Make a `~/examples` and copy the `auto_examples_python.zip` file there.
-* Unzip the `auto_examples_python.zip` (`unzip auto_examples_python.zip`).
+5. Unzip the `auto_examples_python.zip` (`unzip auto_examples_python.zip`).
 
 This can be done directly right clicking on the zip link and choosing copy link.
 Then pasting that link as shown below
@@ -21,7 +21,6 @@ Then pasting that link as shown below
     # you must edit the line below or it will not work
     url="<LINK-GOES-HERE>"
     wget -N ${url}
-    mkdir -p ~/examples
     unzip -d ~/examples auto_examples_python.zip
 
 
