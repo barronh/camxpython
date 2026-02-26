@@ -76,7 +76,7 @@ Remember, this will not work until you complete the preparation steps:
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The section describes how to get all the exmamples as python files.">
+    <div class="sphx-glr-thumbcontainer" tooltip="The section describes how to get all the examples as python files.">
 
 .. only:: html
 

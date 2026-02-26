@@ -47,19 +47,18 @@ to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="get-examples-folder">
 <span id="sphx-glr-auto-examples-prep-ex-prep-01-examples-py"></span><h1>Get Examples Folder<a class="headerlink" href="#get-examples-folder" title="Link to this heading">¶</a></h1>
-<p>The section describes how to get all the exmamples as python files.</p>
+<p>The section describes how to get all the examples as python files.</p>
 <p>Steps:</p>
 <ol class="arabic simple">
-<li><p>Navigate to the tutorial <a class="reference external" href="http://github.com/barronh/camxpython">http://github.com/barronh/camxpython</a></p></li>
-<li><p>Go to the documentation and Examples.</p></li>
-<li><p>Find “Download all examples in Python source code: auto_examples_python.zip” and download it.</p></li>
-<li><p>Make a <cite>~/examples</cite> and copy the <cite>auto_examples_python.zip</cite> file there.</p></li>
-<li><p>Unzip the <cite>auto_examples_python.zip</cite> (<cite>unzip auto_examples_python.zip</cite>).</p></li>
+<li><p>Go to the bottom of the [Examples page](<a class="reference external" href="https://barronh.github.io/camxpython/auto_examples/index.html">https://barronh.github.io/camxpython/auto_examples/index.html</a>).</p></li>
+<li><p>Download the zip file “Download all examples in Python source code: auto_examples_python.zip”.</p></li>
+<li><p>Unzip the <cite>auto_examples_python.zip</cite> into <cite>~/examples</cite>.</p></li>
 </ol>
-<p>This can be done directly right clicking on the zip link and choosing copy link.
-Then pasting that link as shown below</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># The url below must be updated by righ clicking on the downloadurl may change
-# you must edit the line below or it will not work
+<p>This can be done by right clicking on the zip link, choosing copy link, and
+using the link in the code below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># you must edit the line below, or it will not work
+# something like:
+#  url=&quot;https://barronh.github.io/camxpython/_downloads/07fcc19ba03226cd3d83d4e40ec44385/auto_examples_python.zip&quot;
 url=&quot;&lt;LINK-GOES-HERE&gt;&quot;
 wget -N ${url}
 unzip -d ~/examples auto_examples_python.zip
