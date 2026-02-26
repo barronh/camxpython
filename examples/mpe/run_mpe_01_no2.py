@@ -10,6 +10,8 @@ The basic steps are:
 2. Download hourly observations for that domain to a CSV file.
 3. Add CAMx hourly model data to the observations CSV file..
 4. Plot a time series
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

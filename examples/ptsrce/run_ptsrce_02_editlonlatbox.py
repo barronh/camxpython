@@ -14,6 +14,8 @@ The basic steps are:
 3. Define a multiplicative scaling factor
 4. Apply the scaling factor to all cells within the area.
 5. Make a plot demonstrating the change.
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

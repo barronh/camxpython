@@ -14,6 +14,8 @@ can be converted to molecules/cm2 and summed to make a tropNO2 product. Note,
 however, that the CAMx tropNO2 inherently assumes a different model profile.
 A more complete comparison would adjust OMI to use CAMx's profile, or adjust
 CAMx to use OMI's profile. Each has strengths and weaknesses.
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

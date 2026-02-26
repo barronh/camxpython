@@ -5,7 +5,7 @@ Preparing Python Environment
 The basic steps are:
 
 1. Create a requirements file.
-2. Install a new virtual environment (py312).
+2. Install a new virtual environment (pycx).
 
     - Load the virtual environment.
     - Install libraries.
@@ -37,15 +37,15 @@ Below is a bash command that makes a requirements.txt
 Install a new virtual environment
 '''''''''''''''''''''''''''''''''
 
-- Make a new virtual environment (py312)
+- Make a new virtual environment (pycx)
 - Load the virtual environment.
 - Install libraries.
 - Unload virtual environment (optional)
 
 .. code-block:: bash
 
-    python3 -m venv py312
-    source py312/bin/activate
+    python3 -m venv pycx
+    source pycx/bin/activate
     python -m pip install -r requirements.txt
     deactivate
 
@@ -56,6 +56,7 @@ Any time you want to use the python environment, load it.
 
 .. code-block:: bash
 
-    source py312/bin/activate
+    source pycx/bin/activate
 
+The environment will stay active until you either run deactivate or logout.
 """

@@ -2,6 +2,9 @@
 Using Mamba to get Python
 =========================
 
+*::NOTE::* If the previous python setup worked, do not do this example.
+*::NOTE::* This is just a backup.
+
 Sometimes machines are locked down. In that case, use your own package
 manager. On these machines, we can easily use micromamba.
 
@@ -17,7 +20,5 @@ and dirty approach to get just what we need.
     popd
     micromamba/bin/micromamba install python==3.12
     .local/share/mamba/bin/python -m venv ~/py312
-
-Many of you will not need to do this.
 
 """

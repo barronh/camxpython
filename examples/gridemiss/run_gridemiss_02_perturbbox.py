@@ -13,6 +13,8 @@ The basic steps are:
 3. Define a region of application.
 4. Scale by a multiplicative factor.
 5. Plot the old and new result.
+
+*Reminder*: You must have already activated your python environment.
 """
 
 # %%

@@ -8,7 +8,7 @@ from sphinx_gallery.sorting import FileNameSortKey
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'SESARM Training'
+project = 'CAMx Examples'
 copyright = '2026'
 author = ''
 release = 'Unversioned'
@@ -18,7 +18,8 @@ release = 'Unversioned'
 
 extensions = [
     'sphinx_gallery.gen_gallery',
-    'sphinx_copybutton'
+    'sphinx_copybutton',
+    'sphinx.ext.githubpages',
 ]
 
 templates_path = ['_templates']
