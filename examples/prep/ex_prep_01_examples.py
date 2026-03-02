@@ -6,7 +6,7 @@ The section describes how to get all the examples as python files.
 
 Steps:
 
-1. Go to the bottom of the [Examples page](https://barronh.github.io/camxpython/auto_examples/index.html).
+1. Go to the bottom of the `Examples page <https://barronh.github.io/camxpython/auto_examples/index.html>`_.
 2. Download the zip file "Download all examples in Python source code: auto_examples_python.zip".
 3. Unzip the `auto_examples_python.zip` into `~/examples`.
 

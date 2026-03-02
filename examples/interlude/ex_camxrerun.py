@@ -11,9 +11,10 @@ The basic steps are:
 Edit Job Script
 '''''''''''''''
 
-Below is a bash command that makes a requirements.txt
+Below is a unified patch file showing the edits necessary to modify the CAMx
+testcase run to use updated emissions from this tutorial.
 
-.. code-block:: fortran
+.. code:: csh
 
     --- CAMx_v7.32.36.12.20160610-11.noMPI.job      2026-01-27 12:48:03.741867000 -0500
     +++ CAMx_v7.32.36.12.20160610-11.noMPI-updatedemis.job  2026-02-19 11:09:48.976320000 -0500
