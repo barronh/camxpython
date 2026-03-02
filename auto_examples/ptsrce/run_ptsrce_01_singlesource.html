@@ -85,20 +85,73 @@ It also reports all variables that are in the file, which makes direct modificat
 </pre></div>
 </div>
 </section>
-<section id="create-a-single-source-file">
-<h2>Create a Single Source File<a class="headerlink" href="#create-a-single-source-file" title="Link to this heading">¶</a></h2>
+<section id="create-an-average-single-source-file">
+<h2>Create an Average Single Source File<a class="headerlink" href="#create-an-average-single-source-file" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Old file has N point sources.</p></li>
 <li><p>Oddly, each point source is an element of the COL dimension.</p></li>
-<li><p>Average the COL dimension to make an “average” point source.</p></li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">oldfile</span> <span class="o">=</span> <span class="n">pnc</span><span class="o">.</span><span class="n">pncopen</span><span class="p">(</span><span class="n">oldpath</span><span class="p">)</span>
-<span class="n">newfile</span> <span class="o">=</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">COL</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a Single Source File At Maximum Emission</span>
+<span class="c1"># &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>
+<span class="c1"># - Old file has N point sources.</span>
+<span class="c1"># - Find the stack whose daily average rate is the highest</span>
+
+<span class="c1"># Or, create a file based on the maximum stack NO rate</span>
+<span class="n">dayfile</span> <span class="o">=</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">TSTEP</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>         <span class="c1"># get the mean daily-rate</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">dayfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;NO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>  <span class="c1"># find the maximum stack index</span>
+<span class="n">atmaxfile</span> <span class="o">=</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">COL</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>              <span class="c1"># choose that stack to represent</span>
+<span class="n">atmaxfile</span>
+
+
+<span class="c1"># Optional Adjustments</span>
+<span class="c1"># &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>
+<span class="c1"># There are an infinite number of adjustments you could apply. The examples</span>
+<span class="c1"># cover relocating the source, modifying the temporal profile and adjusting</span>
+<span class="c1"># the magnitude.</span>
+<span class="c1">#</span>
+<span class="c1"># - Apply the mean temporal profile to the max stack.</span>
+<span class="c1"># - Relocate the stack to any location.</span>
+<span class="c1"># - Scale NO by 2</span>
+
+<span class="c1"># Calculate the average time profile by species</span>
+<span class="c1"># note: time profiles are in UTC and averaged across timezones</span>
+<span class="n">meanfile</span> <span class="o">=</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">COL</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">timeprofile</span> <span class="o">=</span> <span class="n">meanfile</span> <span class="o">/</span> <span class="n">meanfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">TSTEP</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># apply the time profiles to the maximum stack&#39;s daily average</span>
+<span class="n">newfile</span> <span class="o">=</span> <span class="n">atmaxfile</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">TSTEP</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">timeprofile</span>
+
+<span class="c1"># Make sure that math did not affect TFLAG</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;TFLAG&#39;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">atmaxfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;TFLAG&#39;</span><span class="p">][:]</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ETFLAG&#39;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">atmaxfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ETFLAG&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Optionally, relocate the hypothetical stack</span>
+<span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="o">-</span><span class="mf">78.6382</span><span class="p">,</span> <span class="mf">35.7796</span>  <span class="c1"># Arbitrarily chose Raleigh, NC</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">getproj</span><span class="p">(</span><span class="n">withgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fromorigin</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># get a pyproj object</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">proj</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>  <span class="c1"># calculate the x/y location in meters from LCC center</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;xcoord&#39;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># assign results</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ycoord&#39;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># Optionally, scale a specific set of species</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;NO&#39;</span><span class="p">][:]</span> <span class="o">*=</span> <span class="mf">0.5</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">][:]</span> <span class="o">*=</span> <span class="mf">0.5</span>
+<span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;HONO&#39;</span><span class="p">][:]</span> <span class="o">*=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Save the single stack file</span>
+<span class="c1"># &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>
+
 <span class="n">saved</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF4_CLASSIC&#39;</span><span class="p">,</span> <span class="n">outmode</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
 <span class="n">saved</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Adding dimensions
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;string&gt;:1: RuntimeWarning: invalid value encountered in divide
+**PNC:/work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/PseudoNetCDF/pncwarn.py:24:UserWarning:
+  Currently not using:false_northing 1872000.0
+**PNC:/work/ROMO/users/bhenders/SESARMTraining/py312/lib64/python3.12/site-packages/PseudoNetCDF/pncwarn.py:24:UserWarning:
+  Currently not using:false_easting 2556000.0
+Adding dimensions
 Adding globals
 Adding variables
 Defining xcoord
@@ -273,7 +326,7 @@ Populating IVOA
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">newfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;FPRM&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;FPRM&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;FPRM [g/h]&#39;</span><span class="p">)</span>
 <span class="c1"># Add a time-series plot of NOx to the secondary axis</span>
-<span class="n">noxf</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;NOx = NO[:] + NO2[:]&#39;</span><span class="p">)</span>
+<span class="n">noxf</span> <span class="o">=</span> <span class="n">newfile</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;NOx = NO[:] + NO2[:] + HONO[:]&#39;</span><span class="p">)</span>
 <span class="n">sax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">noxf</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;NOx&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NOx&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">sax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;NOx [mol/h]&#39;</span><span class="p">)</span>
 
@@ -299,7 +352,7 @@ Populating IVOA
 <li><p>Modify the script to set the xcoord and yxoord to a new location before saving out [LCC meters].</p></li>
 <li><p>What other properties might you want to change?</p></li>
 </ol>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 11.495 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 12.531 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-ptsrce-run-ptsrce-01-singlesource-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5f9ee0bc75c4ad8cbb328737c28c41e2/run_ptsrce_01_singlesource.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_ptsrce_01_singlesource.ipynb</span></code></a></p>

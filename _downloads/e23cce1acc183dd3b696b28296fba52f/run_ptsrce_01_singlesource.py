@@ -44,14 +44,62 @@ if os.path.exists(newpath):
     os.remove(newpath)
 
 # %%
-# Create a Single Source File
-# '''''''''''''''''''''''''''
+# Create an Average Single Source File
+# ''''''''''''''''''''''''''''''''''''
 # - Old file has N point sources.
 # - Oddly, each point source is an element of the COL dimension.
-# - Average the COL dimension to make an "average" point source.
 
 oldfile = pnc.pncopen(oldpath)
-newfile = oldfile.apply(COL='mean')
+
+# Create a Single Source File At Maximum Emission
+# '''''''''''''''''''''''''''''''''''''''''''''''
+# - Old file has N point sources.
+# - Find the stack whose daily average rate is the highest
+
+# Or, create a file based on the maximum stack NO rate
+dayfile = oldfile.apply(TSTEP='mean')         # get the mean daily-rate
+idx = dayfile.variables['NO'][0, :].argmax()  # find the maximum stack index
+atmaxfile = oldfile.slice(COL=idx)              # choose that stack to represent
+atmaxfile
+
+
+# Optional Adjustments
+# ''''''''''''''''''''
+# There are an infinite number of adjustments you could apply. The examples
+# cover relocating the source, modifying the temporal profile and adjusting
+# the magnitude.
+#
+# - Apply the mean temporal profile to the max stack.
+# - Relocate the stack to any location.
+# - Scale NO by 2
+
+# Calculate the average time profile by species
+# note: time profiles are in UTC and averaged across timezones
+meanfile = oldfile.apply(COL='mean')
+timeprofile = meanfile / meanfile.apply(TSTEP='mean')
+
+# apply the time profiles to the maximum stack's daily average
+newfile = atmaxfile.apply(TSTEP='mean') * timeprofile
+
+# Make sure that math did not affect TFLAG
+newfile.variables['TFLAG'][:] = atmaxfile.variables['TFLAG'][:]
+newfile.variables['ETFLAG'][:] = atmaxfile.variables['ETFLAG'][:]
+
+# Optionally, relocate the hypothetical stack
+lon, lat = -78.6382, 35.7796  # Arbitrarily chose Raleigh, NC
+proj = newfile.getproj(withgrid=False, fromorigin=True)  # get a pyproj object
+x, y = proj(lon, lat)  # calculate the x/y location in meters from LCC center
+newfile.variables['xcoord'][:] = x  # assign results
+newfile.variables['ycoord'][:] = y
+
+# Optionally, scale a specific set of species
+newfile.variables['NO'][:] *= 0.5
+newfile.variables['NO2'][:] *= 0.5
+newfile.variables['HONO'][:] *= 0.5
+
+# Save the single stack file
+# ''''''''''''''''''''''''''
+
 saved = newfile.save(newpath, format='NETCDF4_CLASSIC', outmode='ws')
 saved.close()
 
@@ -88,7 +136,7 @@ mapax.set(xticks=[], yticks=[])
 ax.plot(t, newfile.variables['FPRM'][:, 0], label='FPRM', color='k')
 ax.set(ylabel='FPRM [g/h]')
 # Add a time-series plot of NOx to the secondary axis
-noxf = newfile.eval('NOx = NO[:] + NO2[:]')
+noxf = newfile.eval('NOx = NO[:] + NO2[:] + HONO[:]')
 sax.plot(t, noxf.variables['NOx'][:, 0], label='NOx', color='r')
 sax.set(ylabel='NOx [mol/h]')
 
